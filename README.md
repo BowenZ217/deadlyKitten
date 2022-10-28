@@ -7,6 +7,7 @@ deadlyKitten
 * Peter Zhu (bowenz12)
 * Siqi Du (siqidu3)
 * Zhicheng Tang (zt17)
+* Jordan Alwan (jzalwan2)
 
 ## Project Introduction
 * todo();

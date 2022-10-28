@@ -33,3 +33,9 @@
 
 # Mac
 .DS_Store
+
+# cmake
+build/
+test
+
+# testcase
