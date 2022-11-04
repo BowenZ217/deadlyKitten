@@ -28,3 +28,4 @@ Each person should be expected to work on average 4 hours/week. This isn't a har
  All conflicts within the team will be resolved in a professional manner. Disagreements will be resolved by vote. If a certain group member is habitually completing less work than expected or late we will have a discussion with said member in order to resolve any issues. If this is not enough, worst comes to worst we will inform course staff, but only after we try to solve the conflict ourselves. Other hypothetical situations will be dealt with when they arise, and we will try our best to be fair to all group members. 
 
 ## Signatures
+* Zhicheng Tang (zt17)
