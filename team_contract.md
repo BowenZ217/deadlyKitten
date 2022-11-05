@@ -29,3 +29,4 @@ Each person should be expected to work on average 4 hours/week. This isn't a har
 
 ## Signatures
 * Zhicheng Tang (zt17)
+* Jordan Alwan (jzalwan2)
