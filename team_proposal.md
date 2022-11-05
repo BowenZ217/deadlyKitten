@@ -3,10 +3,10 @@ DeadlyKitten Airlines is an ambitious new airline company. It hopes to increase 
 Based on the shortest paths, we further want to calculate the betweenness centrality to measure the importance of airports over the world.
 
 From this, our target goals are to:
--find the shortest path that a plane can take to reach all of it’s destinations
--calculate the betweenness centrality/figure out which airports are the most important
--implement traversals (bfs, dfs) and different search algorithms (dijkstra's, flowd-warshall, kruskal, and prim's) and compare their time complexities in respect to our problem
--test how other algorithms (such as A* search) impact the time complexity of solving our problem
+- find the shortest path that a plane can take to reach all of it’s destinations
+- calculate the betweenness centrality/figure out which airports are the most important
+- implement traversals (bfs, dfs) and different search algorithms (dijkstra's, flowd-warshall, kruskal, and prim's) and compare their time complexities in respect to our problem
+- test how other algorithms (such as A* search) impact the time complexity of solving our problem
 
 
 ## Dataset Acquisition
