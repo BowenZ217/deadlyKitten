@@ -68,10 +68,10 @@ Description:
 
 ## Data Correction
 We will check the data in advance from the following aspects in Python and mysql.
-(1)data integrity of sources: check if there is null data in records from the sources. According to our goal about path planning among a specific set of main cities, we will exclude unrelated data ahead of operating. So non related airports or routes missing are acceptable in sources, and the null data can be dropped in this case without leading to loss of information. Then for the name or code missing, we will use queries to find them and fill null.
-(2)correction: check the geographical data of an airport, including the rationality of latitude, longitude, city, and altitude to avoid errors.
-(3)consistency across data tables, including checking the consistent correspondence among the airport code, name, and the location information in source tables.
-(4)rationality: for the relatively important cities ( we probably select as a vertical of the shortest path problem), we will check the routes' information to avoid inaccuracy, such as the rationality of the frequency of the city being passed.
+1. data integrity of sources: check if there is null data in records from the sources. According to our goal about path planning among a specific set of main cities, we will exclude unrelated data ahead of operating. So non related airports or routes missing are acceptable in sources, and the null data can be dropped in this case without leading to loss of information. Then for the name or code missing, we will use queries to find them and fill null.
+2. correction: check the geographical data of an airport, including the rationality of latitude, longitude, city, and altitude to avoid errors.
+3. consistency across data tables, including checking the consistent correspondence among the airport code, name, and the location information in source tables.
+4. rationality: for the relatively important cities ( we probably select as a vertical of the shortest path problem), we will check the routes' information to avoid inaccuracy, such as the rationality of the frequency of the city being passed.
 
 ## Data Storage
 Adjacency Matrix for distance
@@ -85,6 +85,7 @@ $O(n)$
 ### Breadth First Search (BFS)
 Compared to depth first search (DFS), we consider BFS as a more feasible method in this case. According to the datasets, due to a wide number of airport options, there are bound to be different routes with multiple stops in between from one place to another during finding the shortest path. It is very possible that the stack is filled with all the vertices in the graph and requires much more memory to store potential paths than BFS does. And as for time complexity, we need to explore each of a huge number of edges at once,  which leads to an impressively complicated condition. So it is practical to use BFS in this case.
 Firstly,  we will model  the airport network as a graph and initialize the BFS queue with the given location as the starting point. Considering the complexity of the airport network, we can choose a more specific area to implement or set a limit of stops, which can limit the number of searches between two airports. Then we can perform the breadth first traversal, and keep going until the queue is empty or until the maximum number of stops has been exhausted.
+Optionally, we can combine BFS with Floyd-Warshall Algorithm to explore a solution. After working out the shortest path matrix by Floyd-Warshall, we can utilize BFS to reach a total route planning.
 
 ### Dijkstra's Algorithm
 After calculating the distances information based on the dataset. We will model the connections among given airports set as a graph. The weight of edges represents the distance between two nodes. If two nodes are not connected directly, the initial distance will be infinite. From a given start airport, we will start checking the distance between it with the adjacent airport, and use the distance to update edge weight. Then we will select the node that is closest to the source node based on the current known distances and analyze the new node to update the shortest path. Sequentially, we will work out the shortest path.
