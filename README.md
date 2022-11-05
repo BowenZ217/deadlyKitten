@@ -1,21 +1,30 @@
-# project name -- todo()
+# deadlyKittenAirline
 
 ## Group Name
+
 deadlyKitten
 
 ## Group member names and NetIDs
+
 * Peter Zhu (bowenz12)
 * Siqi Du (siqidu3)
 * Zhicheng Tang (zt17)
 * Jordan Alwan (jzalwan2)
 
 ## Project Introduction
-* todo();
+
+DeadlyKitten Airlines is an ambitious new airline company. It hopes to increase their profits by setting up routes to several major airports around the world. In addition, the planes take off from the city where the airline's factory is located, and after flying through a certain number of airports, they need to return to the original factory for overhaul. The company cannot open up new routes, and can only follow the paths that already exist. Therefore, it wants to find the shortest routes that could pass through these predefined cities and return to the starting point.
+
+Considering that each aircraft may have a different set of cities to arrive at, the company will have hundreds of aircraft, and the destination may change in the future, it is necessary to develop search algorithms that can efficiently find the shortest paths between dozens of cities/airports given.
 
 ## System Overview
-todo();
 
-## Possible Challenges
-todo();
+To reach the company's goals, our analysts plan to utilize the OpenFlight dataset. The sub-dataset “routes.dat” covers the source airports and destinations and can form the graph in which we will run the algorithms.
+
+In addition, we have another sub dataset “airport.dat”, which contains the longitude and latitude of each airport. After merging these two datasets, the distance of each route can be calculated. To make the problem solvable we will estimate the actual distance of routes using the Euclidean distance in latitude and longitude.
+
+Based on the shortest paths, we further want to calculate the betweenness centrality to measure the importance of airports over the world.
 
 ## References
+
+* [CS 225 Final Project](https://courses.engr.illinois.edu/cs225/fa2022/pages/final_project.html)
