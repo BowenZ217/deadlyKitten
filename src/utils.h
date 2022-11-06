@@ -3,9 +3,10 @@
 #include <fstream>
 #include <vector>
 #include <string>
-#include <assert.h>     /* assert */
+#include <stdexcept>
 #include <algorithm>
 #include <sstream>
+#include <bits/stdc++.h>    /* M_PI */
 #include <iostream>
 
 using std::ifstream;
@@ -20,7 +21,7 @@ using std::string;
  * 
  * @return data in this file, in 2d vector
  */
-vector<vector<string>> datToVector(const string& fileName, unsigned size);
+vector<vector<string>> fileToVector(const string& fileName, unsigned size);
 
 /**
  * @brief remove leading and trailing spaces from a string
@@ -29,3 +30,37 @@ vector<vector<string>> datToVector(const string& fileName, unsigned size);
  * @return string without leading and trailing spaces
  */
 string trim(const string& s);
+
+/**
+ * @brief Calculate euclidean distance between two points 
+ * 
+ * @param latitude_1 latitude of first point
+ * @param longitude_1 longitude of first point
+ * @param latitude_2 latitude of second point
+ * @param longitude_2 longitude of second point
+ * 
+ * @return distance
+ */
+long double calcDistance(long double latitude_1, long double longitude_1, long double latitude_2, long double longitude_2);
+
+/**
+ * @brief converting degrees to radians
+ * 
+ * @param degree input
+ * 
+ * @return radians of input
+ */
+long double degreeToRadians(const long double& degree);
+
+/**
+ * @brief Calculate distance between two points by using Haversine formula :
+ * https://www.igismap.com/haversine-formula-calculate-geographic-distance-earth/
+ * 
+ * @param latitude_1 latitude of first point
+ * @param longitude_1 longitude of first point
+ * @param latitude_2 latitude of second point
+ * @param longitude_2 longitude of second point
+ * 
+ * @return distance
+ */
+long double calcDistance_2(long double latitude_1, long double longitude_1, long double latitude_2, long double longitude_2);

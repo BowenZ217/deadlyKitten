@@ -37,7 +37,7 @@ TEST_CASE("Test datToVector", "[utils]") {
         {"engine","throat","celebration","television","oven"}
     };
 
-    vector<vector<string>> result = datToVector(file_name, 5);
+    vector<vector<string>> result = fileToVector(file_name, 5);
 
     REQUIRE(compareVector(actual, result, 5));
 }

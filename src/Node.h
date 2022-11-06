@@ -1,8 +1,13 @@
 #pragma once
 
 #include <string>
+#include <iostream>
+#include <stdexcept>
+#include <vector>
 
+using std::vector;
 using std::string;
+using std::cout;
 
 
 /**
@@ -14,10 +19,10 @@ struct Node {
     string city_;
     string country_;
     // Negative is South, positive is North.
-    string latitude_;
+    long double latitude_;
     // Negative is West, positive is East.
-    string longitude_;
-    string altitude_;
+    long double longitude_;
+    long double altitude_;
 
 
     /**
@@ -26,7 +31,12 @@ struct Node {
     Node();
     
     /**
+     * constructor by using a vector of data
+     */
+    Node(const vector<string>& data);
+    /**
      * Constructor
+     * 
      * @param airport_ID Unique OpenFlights identifier for this airport.
      * @param name Name of airport. May or may not contain the City name.
      * @param city Main city served by airport. May be spelled differently from Name.
@@ -35,7 +45,7 @@ struct Node {
      * @param longitude Decimal degrees, usually to six significant digits. Negative is West, positive is East.
      * @param altitude In feet.
      */
-    Node(unsigned airport_id, string name, string city, string country, string latitude, string longitude, string altitude);
+    Node(const string& airport_id, const string& name, const string& city, const string& country, const string& latitude, const string& longitude, const string& altitude);
 
     /**
      * overload operator ==

@@ -4,7 +4,7 @@ using std::stringstream;
 using std::cout;
 using std::endl;
 
-vector<vector<string>> datToVector(const string& fileName, unsigned size) {
+vector<vector<string>> fileToVector(const string& fileName, unsigned size) {
     // init
     vector<vector<string>> data;
     ifstream dataFile(fileName);
@@ -13,12 +13,12 @@ vector<vector<string>> datToVector(const string& fileName, unsigned size) {
     // check if meet problem with opening the file
     if (!dataFile.is_open()) {
         std::cout << "Fail to open \"" << fileName << "\". Please check the file path and name." << std::endl;
-        assert(dataFile.is_open());
+        throw std::invalid_argument("Wrong file name");
         return data;
     }
 
-    // function to check if a char is new line character
-    auto is_new_line = [](auto ch) { return (ch == '\n' || ch == '\r'); };
+    // function to check if a char is not needed
+    auto is_new_line = [](auto ch) { return (ch == '\n' || ch == '\r' || ch == '\"'); };
     
     // start to fill in data
     while (getline(dataFile, currLine)) {
@@ -44,7 +44,7 @@ vector<vector<string>> datToVector(const string& fileName, unsigned size) {
     // check if it contains at least 1 information
     if (data.size() == 0) {
         cout << "Reads 0 line from \"" << fileName << "\". Please try with another file." << endl;
-        assert(data.size() != 0);
+        throw std::invalid_argument("Wrong file name");
     }
     return data;
 }
@@ -62,4 +62,40 @@ string trim(const string& s) {
     } while (std::distance(start, end) > 0 && std::isspace(*end));
  
     return string(start, end + 1);
+}
+
+long double calcDistance(long double latitude_1, long double longitude_1, long double latitude_2, long double longitude_2) {
+    // Euclidean distance
+    long double ans = pow(latitude_2 - latitude_1, 2) + pow(longitude_2 - longitude_1, 2);
+    ans = sqrt(ans);
+
+    return ans;
+}
+
+long double degreeToRadians(const long double& degree) {
+    long double one_deg = (M_PI) / 180;
+    return (one_deg * degree);
+}
+
+long double calcDistance_2(long double latitude_1, long double longitude_1, long double latitude_2, long double longitude_2) {
+    // transform input from degree to radians
+    latitude_1 = degreeToRadians(latitude_1);
+    longitude_1 = degreeToRadians(longitude_1);
+    latitude_2 = degreeToRadians(latitude_2);
+    longitude_2 = degreeToRadians(longitude_2);
+     
+    // Haversine Formula
+    long double lon_diff = longitude_2 - longitude_1;
+    long double lat_diff = latitude_2 - latitude_1;
+
+    long double ans = pow(sin(lat_diff / 2), 2) + cos(latitude_1) * cos(latitude_2) * pow(sin(lon_diff / 2), 2);
+    ans = 2 * asin(sqrt(ans));
+
+    // Radius of Earth in Kilometers
+    long double R = 6371;
+
+    // Calculate the result
+    ans = ans * R;
+
+    return ans;
 }
