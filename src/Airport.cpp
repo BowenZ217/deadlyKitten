@@ -1,10 +1,10 @@
-#include "Node.h"
+#include "Airport.h"
 
-Node::Node() {
+Airport::Airport() {
     /* do nothing */
 }
 
-Node::Node(const vector<string>& data) {
+Airport::Airport(const vector<string>& data) {
     // if received error
     if (data.size() != 7)
         throw std::invalid_argument("Wrong number of parameters");
@@ -21,7 +21,7 @@ Node::Node(const vector<string>& data) {
     altitude_ = std::stold(data[6]);
 }
 
-Node::Node(const string& airport_id, const string& name, const string& city, const string& country, const string& latitude, const string& longitude, const string& altitude) {
+Airport::Airport(const string& airport_id, const string& name, const string& city, const string& country, const string& latitude, const string& longitude, const string& altitude) {
     // init
     name_ = name;
     city_ = city;

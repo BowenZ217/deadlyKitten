@@ -2,7 +2,7 @@
 #include <string>
 #include "cs225/PNG.h"
 
-#include "Node.h"
+#include "Airport.h"
 #include "utils.h"
 
 using namespace std;
@@ -23,7 +23,7 @@ int main()
 
     cout << "\n-------------------------------------------\n\n";
 
-    std::vector<Node> nodes;
+    std::vector<Airport> airports;
 
     for (int i = 0; i < 10; ++i) {
         try {
@@ -31,7 +31,7 @@ int main()
             // remove unused data
             curr.erase(curr.begin() + 9, curr.end());
             curr.erase(curr.begin() + 4, curr.begin() + 6);
-            nodes.push_back(Node(curr));
+            airports.push_back(Airport(curr));
         }
         catch (const std::exception& e) {
             cout << "Node " << i << " meet error : " << e.what() << endl;
@@ -39,11 +39,11 @@ int main()
     }
 
     // euclidean distance
-    long double distance_1 = calcDistance(nodes[0].latitude_, nodes[0].longitude_, nodes[1].latitude_, nodes[1].longitude_);
+    long double distance_1 = calcDistance(airports[0].latitude_, airports[0].longitude_, airports[1].latitude_, airports[1].longitude_);
     // Haversine formula
-    long double distance_2 = calcDistance_2(nodes[0].latitude_, nodes[0].longitude_, nodes[1].latitude_, nodes[1].longitude_);
+    long double distance_2 = calcDistance_2(airports[0].latitude_, airports[0].longitude_, airports[1].latitude_, airports[1].longitude_);
 
-    cout << "distance from " << nodes[0].name_ << "(" << nodes[0].airport_id_ << ") to " << nodes[1].name_ << "(" << nodes[1].airport_id_ << "):\n";
+    cout << "distance from " << airports[0].name_ << "(" << airports[0].airport_id_ << ") to " << airports[1].name_ << "(" << airports[1].airport_id_ << "):\n";
     cout << "The euclidean distance = " << distance_1 << endl;
     cout << "Haversine formula distance = " << distance_2 << endl;
 

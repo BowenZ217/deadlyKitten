@@ -11,27 +11,27 @@ class GraphTraversal {
         /**
          * A forward iterator through an GraphTraversal.
          */
-        class Iterator : std::iterator<std::forward_iterator_tag, Node> {
+        class Iterator : std::iterator<std::forward_iterator_tag, Airport> {
             public:
                 Iterator();
 
                 Iterator & operator++();
-                Node operator*();
+                Airport operator*();
                 bool operator!=(const Iterator &other);
 
                 // member functions
-                Iterator(GraphTraversal* traversal, Node start);
+                Iterator(GraphTraversal* traversal, Airport start);
 
             private:
                 // private members
-                Node start_;
-                Node current_;
+                Airport start_;
+                Airport current_;
                 
                 // references
                 GraphTraversal* traversal_;
 
                 // helper function
-                void addNext(Node node);
+                void addNext(Airport node);
         };
 
     /**
@@ -50,17 +50,17 @@ class GraphTraversal {
      * Add new point to the traversal
      * Virtual function. Derived class need to implement this
      */
-    virtual void add(const Node & t) = 0;
+    virtual void add(const Airport & t) = 0;
     /**
      * Remove and return the next point of the traversal
      * Virtual function. Derived class need to implement this
      */
-    virtual Node pop() = 0;
+    virtual Airport pop() = 0;
     /**
      * Return but not remove the next point of the traversal
      * Virtual function. Derived class need to implement this
      */
-    virtual Node peek() const = 0;
+    virtual Airport peek() const = 0;
     /**
      * To see if the traversal has no points left
      * Virtual function. Derived class need to implement this

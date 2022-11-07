@@ -13,7 +13,7 @@ using std::cout;
 /**
  * Simple Node class containing the information of airports.
  */
-struct Node {
+struct Airport {
     unsigned airport_id_;
     string name_;
     string city_;
@@ -28,12 +28,12 @@ struct Node {
     /**
      * Default constructor
      */
-    Node();
+    Airport();
     
     /**
      * constructor by using a vector of data
      */
-    Node(const vector<string>& data);
+    Airport(const vector<string>& data);
     /**
      * Constructor
      * 
@@ -45,14 +45,14 @@ struct Node {
      * @param longitude Decimal degrees, usually to six significant digits. Negative is West, positive is East.
      * @param altitude In feet.
      */
-    Node(const string& airport_id, const string& name, const string& city, const string& country, const string& latitude, const string& longitude, const string& altitude);
+    Airport(const string& airport_id, const string& name, const string& city, const string& country, const string& latitude, const string& longitude, const string& altitude);
 
     /**
      * overload operator ==
      * @param other The other node
      * @return True for same airport, false for otherwise
      */
-    bool operator==(const Node &other) const {
+    bool operator==(const Airport &other) const {
         return (airport_id_ == other.airport_id_ && name_ == other.name_ && city_ == other.city_ && country_ == other.country_);
     }
 };

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Node.h"
+#include "Airport.h"
 
 class Graph {
     public:
