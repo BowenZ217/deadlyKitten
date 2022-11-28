@@ -1,9 +1,5 @@
 #include "utils.h"
 
-using std::stringstream;
-using std::cout;
-using std::endl;
-
 vector<vector<string>> fileToVector(const string& fileName, unsigned size) {
     // init
     vector<vector<string>> data;
@@ -39,6 +35,10 @@ vector<vector<string>> fileToVector(const string& fileName, unsigned size) {
         }
 
         if (temp.size() == size) data.push_back(temp);
+        else {
+            // cout << "fail with id : " << temp[0] << " , name = " << temp[1] << endl;
+            // cout << "maybe because there is ',' in name" << endl << endl;
+        }
     }
 
     // check if it contains at least 1 information
@@ -46,6 +46,90 @@ vector<vector<string>> fileToVector(const string& fileName, unsigned size) {
         cout << "Reads 0 line from \"" << fileName << "\". Please try with another file." << endl;
         throw std::invalid_argument("Wrong file name");
     }
+    return data;
+}
+
+vector<vector<int>> fileToIntVector(const string& fileName, unsigned size) {
+    // init
+    vector<vector<int>> data;
+    ifstream dataFile(fileName);
+    string currLine;
+
+    // check if meet problem with opening the file
+    if (!dataFile.is_open())
+        return data;
+
+    // function to check if a char is not needed
+    auto is_new_line = [](auto ch) { return (ch == '\n' || ch == '\r' || ch == '\"'); };
+    
+    // start to fill in data
+    while (getline(dataFile, currLine)) {
+        vector<int> temp;
+
+        // start to split current line by comma
+        stringstream s_stream(currLine);
+
+        while(s_stream.good()) {
+            string substr;
+            // get first string delimited by comma
+            getline(s_stream, substr, ',');
+
+            // Remove newline character from string
+            substr.erase(std::remove_if(substr.begin(), substr.end(), is_new_line), substr.end());
+            substr = trim(substr);
+
+            // if blank, it is -1
+            if (substr.empty()) temp.push_back(-1);
+            else temp.push_back(std::stoi(substr));
+        }
+
+        if (temp.size() == size) data.push_back(temp);
+
+        // if one line is not match as size we need, means wrong file
+        else return {};
+    }
+
+    // if not match the size we need
+    if (data.size() != size) return {};
+
+    return data;
+}
+
+void vectorToFile(const string& fileName, const vector<vector<int>>& data) {
+    // init
+    ofstream dataFile(fileName);
+    string line;
+
+    // write per line by `vector<int>`
+    for (const auto& curr_line : data) {
+        line.clear();
+        for (const auto& curr : curr_line) {
+            // since most value is -1, mark as blank, which could save space
+            if (curr != -1) line += std::to_string(curr);
+            line.push_back(',');
+        }
+        // remove that extra ","
+        line.pop_back();
+        dataFile << line << endl;
+    }
+}
+
+vector<string> readInput() {
+    // init
+    vector<string> data;
+    string curr_line;
+    int idx = 1;
+
+    // read
+    do {
+        cout << "airport " << idx++ << " (input `e` to stop): ";
+        getline(cin, curr_line);
+        curr_line = trim(curr_line);
+        data.push_back(curr_line);
+    } while (curr_line != "e");
+    // remove that extra "e"
+    data.pop_back();
+
     return data;
 }
 

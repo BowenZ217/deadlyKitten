@@ -9,9 +9,15 @@
 #include <bits/stdc++.h>    /* M_PI */
 #include <iostream>
 
-using std::ifstream;
 using std::vector;
+using std::ifstream;
+using std::ofstream;
 using std::string;
+using std::stringstream;
+using std::getline;
+using std::cin;
+using std::cout;
+using std::endl;
 
 /**
  * @brief Transform the data the file to a 2d vector.
@@ -22,6 +28,31 @@ using std::string;
  * @return data in this file, in 2d vector
  */
 vector<vector<string>> fileToVector(const string& fileName, unsigned size);
+
+/**
+ * @brief Transform the data the file to a 2d vector.
+ * 
+ * @param fileName Name of the file to be read from.
+ * @param Size the number of elements contain in each vector
+ * 
+ * @return data in this file, in 2d vector
+ */
+vector<vector<int>> fileToIntVector(const string& fileName, unsigned size);
+
+/**
+ * @brief Save the data in 2d vector to a file
+ * 
+ * @param fileName Name of the file to be save.
+ * @param data data need to save
+ */
+void vectorToFile(const string& fileName, const vector<vector<int>>& data);
+
+/**
+ * @brief read each line from terminal, input `e` to stop
+ * 
+ * @return vector of string for each line
+ */
+vector<string> readInput();
 
 /**
  * @brief remove leading and trailing spaces from a string

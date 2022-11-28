@@ -20,7 +20,7 @@ class GraphTraversal {
                 bool operator!=(const Iterator &other);
 
                 // member functions
-                Iterator(GraphTraversal* traversal, Airport start);
+                Iterator(GraphTraversal* traversal, Airport start, Graph* graph_);
 
             private:
                 // private members
@@ -29,6 +29,7 @@ class GraphTraversal {
                 
                 // references
                 GraphTraversal* traversal_;
+                Graph* graph_;
 
                 // helper function
                 void addNext(Airport node);

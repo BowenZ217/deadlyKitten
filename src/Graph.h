@@ -1,7 +1,17 @@
 #pragma once
 
+#include <vector>
+#include <string>
+#include <unordered_map>
+
 #include "Airport.h"
-#include "Edge.h"
+#include "Flight.h"
+#include "FloydWarshall.h"
+#include "utils.h"
+
+using std::vector;
+using std::string;
+using std::unordered_map;
 
 class Graph
 {
@@ -13,35 +23,54 @@ public:
     // Get a specific vertex
     Vertex getVertex(int idx);
 
-    // Get a list of all vertices of the graph
-    std::vector<Vertex> getAllVertices();
+        /**
+         * constructor by files
+         * 
+         * @param airportFileName name of file which store information of airports
+         * @param routeFileName name of file which store information of routes
+         * @param airlineFileName name of file which store information of airlines
+         */
+        Graph(const string& airportFileName, const string& routeFileName, const string& airlineFileName);
 
-    // Get a list of vertices that is adjacent to the source vertex
-    std::vector<Vertex> getAdjacent(Vertex source);
+        // getter
 
-    // Get edge information from source vertex to destination vertex
-    Edge getEdge(Vertex source, Vertex dest);
+        /**
+         * @brief Find the Shortest Path from `source` to `destination`, with no other stops
+         * 
+         * @param source name of source airpot
+         * @param destination name of destination airpot
+         * 
+         * @return name of airports need to go through (in order)
+         */
+        vector<string> getShortestPath(const string& source, const string& destination);
 
-    // Get a list of all edges of the graph
-    std::vector<Edge> getAllEdges();
+        /**
+         * @brief Find the Shortest Path pass through all airports
+         * 
+         * @param airports Name of airports to pass through
+         * 
+         * @return name of airports need to go through (in order)
+         */
+        vector<string> getShortestPath(const vector<string>& airports);
 
-    // Add an edge from source vertex to the destination edge
-    bool addEdge(Vertex source, Vertex dest);
-    
-    // Delete certain number of edges from source to dest
-    bool deleteEdge(Vertex source, Vertex dest, int num);
+    private:
+        // Define infinite
+        int INF = 1e8;
 
-    // Delete a vertex. Need to modify the edges with its adjacent vertices.
-    bool deleteVertex(int x);
+        // variables
+        unsigned size_;
 
-private:
-    bool weighted_;
-    bool directed_;
-    // 2-d matrix to store graph information. 
-    std::vector<std::vector<Edge>> adjacency_matrix_;
-    // Store vertex id and vertex
-    // There is a problem with this design. As the system adds and deletes vertices, how to record the number of empty index?
-    // Maybe need a stack to record?
-    std::unordered_map<int, Vertex> vertexRecords_;
-    std::stack<int> emptyPositions;
-}
+        unordered_map<string, Airport> airpots_;
+        unordered_map<int, Airport*> id_to_airpot_;
+        vector<Airport*> index_to_airpot_;
+        vector<unordered_map<int, Flight>> flights_;
+
+        FloydWarshall floyd_warshall_;
+
+        // helper functions
+        double _calcWeight(const Flight& flight);
+
+        void buildAirpots(const std::string& airportFileName);
+        void buildFlights(const std::string& routeFileName);
+        void buildFloydWarshall();
+};

@@ -3,12 +3,26 @@
 #include "cs225/PNG.h"
 
 #include "Airport.h"
+#include "Graph.h"
 #include "utils.h"
 
 using namespace std;
 
+void example1();
+void example2();
+void example3();
+
 int main()
 {
+    example2();
+    return 0;
+}
+
+/**
+ * @brief function to check `fileToVector()` works
+ * 
+ */
+void example1() {
     string file_name = "../data/airports.dat";
     auto result = fileToVector(file_name, 14);
     cout << "\"" << file_name << "\" size = " << result.size() << endl;
@@ -24,14 +38,15 @@ int main()
     cout << "\n-------------------------------------------\n\n";
 
     std::vector<Airport> airports;
+    unsigned idx = 0;
 
     for (int i = 0; i < 10; ++i) {
         try {
             auto& curr = result[i];
             // remove unused data
-            curr.erase(curr.begin() + 9, curr.end());
+            curr.erase(curr.begin() + 8, curr.end());
             curr.erase(curr.begin() + 4, curr.begin() + 6);
-            airports.push_back(Airport(curr));
+            airports.push_back(Airport(idx++, curr));
         }
         catch (const std::exception& e) {
             cout << "Node " << i << " meet error : " << e.what() << endl;
@@ -50,5 +65,74 @@ int main()
     cout << "\n-------------------------------------------\n\n";
     
     cout << endl << "finish." << endl;
-    return 0;
+}
+
+/**
+ * @brief function to check the getShortestPath for one source and one destination
+ * 
+ * EX:
+ *  source = "Goroka Airport";
+ *  destination = "Gerardo Tobar López Airport";
+ * 
+ *  Output:
+ *  Goroka Airport -> Port Moresby Jacksons International Airport -> Singapore Changi Airport 
+ *                 -> King Abdulaziz International Airport -> Mohammed V International Airport 
+ *                 -> Tenerife Norte Airport -> Simón Bolívar International Airport 8 -> El Dorado International Airport 
+ *                 -> Gerardo Tobar López Airport -> [end]
+ * 
+ */
+void example2() {
+    string airportFileName = "../data/airports.dat";
+    string routeFileName = "../data/routes.dat";
+    string airlineFileName = "../data/airlines.dat";
+
+    Graph g(airportFileName, routeFileName, airlineFileName);
+
+    
+    vector<string> stops = readInput();
+    vector<string> path;
+
+    while (stops.size() == 2) {
+        cout << "\n\n-----------------------------------------------------\n\n";
+
+        path = g.getShortestPath(stops[0], stops[1]);
+
+        if (path.empty()) {
+            cout << "can not find path between them." << endl;
+        }
+        else {
+            cout << "find the path from \"" << stops[0] << "\" to \"" << stops[1] << "\": " << endl;
+            for (const auto& name : path) {
+                cout << name << " -> ";
+            }
+            cout << "[end]" << endl;
+        }
+        cout << "\n-----------------------------------------------------\n\n";
+
+        // update for next loop
+        stops = readInput();
+    }
+}
+
+/**
+ * @brief function to check `vectorToFile()` works
+ * 
+ */
+void example3() {
+    vector<vector<int>> data
+        = { { 0, 3, -1, 7 },
+            { 8, 0, 2, -1 },
+            { 5, -1, 0, 1 },
+            { 2, -1, -1, 0 } };
+    vectorToFile("temp.txt", data);
+
+    cout << "\n\n-----------------------------------------------------\n\n";
+    vector<vector<int>> read = fileToIntVector("path.save", 4);
+    for (const auto& line : read) {
+        for (const auto& c : line) {
+            cout << c << " , ";
+        }
+        cout << "[end]\n";
+    }
+    cout << "\n-----------------------------------------------------\n\n";
 }
