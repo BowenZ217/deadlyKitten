@@ -4,12 +4,13 @@ Airport::Airport() {
     /* do nothing */
 }
 
-Airport::Airport(const vector<string>& data) {
+Airport::Airport(unsigned index, const vector<string>& data) {
     // if received error
-    if (data.size() != 7)
+    if (data.size() != 6)
         throw std::invalid_argument("Wrong number of parameters");
 
     // init
+    index_ = index;
     name_ = data[1];
     city_ = data[2];
     country_ = data[3];
@@ -18,11 +19,11 @@ Airport::Airport(const vector<string>& data) {
     airport_id_ = std::stoi(data[0]);
     latitude_ = std::stold(data[4]);
     longitude_ = std::stold(data[5]);
-    altitude_ = std::stold(data[6]);
 }
 
-Airport::Airport(const string& airport_id, const string& name, const string& city, const string& country, const string& latitude, const string& longitude, const string& altitude) {
+Airport::Airport(unsigned index, const string& airport_id, const string& name, const string& city, const string& country, const string& latitude, const string& longitude) {
     // init
+    index_ = index;
     name_ = name;
     city_ = city;
     country_ = country;
@@ -30,5 +31,4 @@ Airport::Airport(const string& airport_id, const string& name, const string& cit
     airport_id_ = std::stoul(airport_id);
     latitude_ = std::stold(latitude);
     longitude_ = std::stold(longitude);
-    altitude_ = std::stold(altitude);
 }

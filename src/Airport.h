@@ -8,6 +8,7 @@
 using std::vector;
 using std::string;
 using std::cout;
+using std::endl;
 
 
 /**
@@ -15,6 +16,7 @@ using std::cout;
  */
 struct Airport {
     unsigned airport_id_;
+    unsigned index_;
     string name_;
     string city_;
     string country_;
@@ -22,7 +24,6 @@ struct Airport {
     long double latitude_;
     // Negative is West, positive is East.
     long double longitude_;
-    long double altitude_;
 
 
     /**
@@ -33,7 +34,7 @@ struct Airport {
     /**
      * constructor by using a vector of data
      */
-    Airport(const vector<string>& data);
+    Airport(unsigned index, const vector<string>& data);
     /**
      * Constructor
      * 
@@ -43,9 +44,8 @@ struct Airport {
      * @param country Country or territory where airport is located.
      * @param latitude Decimal degrees, usually to six significant digits. Negative is South, positive is North.
      * @param longitude Decimal degrees, usually to six significant digits. Negative is West, positive is East.
-     * @param altitude In feet.
      */
-    Airport(const string& airport_id, const string& name, const string& city, const string& country, const string& latitude, const string& longitude, const string& altitude);
+    Airport(unsigned index, const string& airport_id, const string& name, const string& city, const string& country, const string& latitude, const string& longitude);
 
     /**
      * overload operator ==
