@@ -76,8 +76,11 @@ vector<vector<int>> fileToIntVector(const string& fileName, unsigned size) {
 
             // Remove newline character from string
             substr.erase(std::remove_if(substr.begin(), substr.end(), is_new_line), substr.end());
+            substr = trim(substr);
 
-            temp.push_back(std::stoi(trim(substr)));
+            // if blank, it is -1
+            if (substr.empty()) temp.push_back(-1);
+            else temp.push_back(std::stoi(substr));
         }
 
         if (temp.size() == size) data.push_back(temp);
@@ -101,7 +104,9 @@ void vectorToFile(const string& fileName, const vector<vector<int>>& data) {
     for (const auto& curr_line : data) {
         line.clear();
         for (const auto& curr : curr_line) {
-            line += std::to_string(curr) + ",";
+            // since most value is -1, mark as blank, which could save space
+            if (curr != -1) line += std::to_string(curr);
+            line.push_back(',');
         }
         // remove that extra ","
         line.pop_back();

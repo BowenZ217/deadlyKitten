@@ -8,7 +8,7 @@ FloydWarshall::FloydWarshall(unsigned size, const vector<vector<double>>& graph)
     size_ = size;
 
     // check if already finish doing for `next_`
-    string save = "../data/path.save";
+    string save = "../data/FloydWarshall.save";
     next_ = fileToIntVector(save, size_);
     if (!next_.empty()) return;
 
@@ -55,9 +55,11 @@ void FloydWarshall::initialise(const vector<vector<double>>& graph) {
                 next_[i][j] = j;
         }
     }
+    cout << "initialising FloydWarshall" << endl;
 
     // similar as pseudocode from wikipedia
     for (unsigned k = 0; k < size_; k++) {
+        cout << "(" << k << "/" << size_ << ")" << endl;
         for (unsigned i = 0; i < size_; i++) {
             for (unsigned j = 0; j < size_; j++) {
                 // check if edge not exist
@@ -73,5 +75,5 @@ void FloydWarshall::initialise(const vector<vector<double>>& graph) {
         }
     }
     // after calc, save it, so maybe can used in next time
-    vectorToFile("../data/path.save", next_);
+    vectorToFile("../data/FloydWarshall.save", next_);
 }

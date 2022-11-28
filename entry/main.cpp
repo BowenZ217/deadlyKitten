@@ -124,10 +124,10 @@ void example3() {
             { 8, 0, 2, -1 },
             { 5, -1, 0, 1 },
             { 2, -1, -1, 0 } };
-    vectorToFile("path.save", data);
+    vectorToFile("temp.txt", data);
 
     cout << "\n\n-----------------------------------------------------\n\n";
-    vector<vector<string>> read = fileToVector("path.save", 4);
+    vector<vector<int>> read = fileToIntVector("path.save", 4);
     for (const auto& line : read) {
         for (const auto& c : line) {
             cout << c << " , ";
