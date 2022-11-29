@@ -86,5 +86,6 @@
         "thread": "cpp",
         "typeindex": "cpp",
         "valarray": "cpp"
-    }
+    },
+    "C_Cpp.errorSquiggles": "Enabled"
 }
