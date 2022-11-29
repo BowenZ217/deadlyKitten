@@ -33,6 +33,7 @@ GraphTraversal::Iterator & GraphTraversal::Iterator::operator++() {
 }
 
 Airport* GraphTraversal::Iterator::operator*() {
+    if (current_ == -1) return NULL;
     return graph_->getAirport(current_);
 }
 
