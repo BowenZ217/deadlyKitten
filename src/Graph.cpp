@@ -44,22 +44,33 @@ int Graph::getSize() {
     return size_;
 }
 
-// helper functions
+vector<Airport*> Graph::getNeighbors(int idx) {
+    vector<Airport*> neighbors;
 
-/**
- * Calculate the weights between two airpots
- *
- * @param flight current flight
- *
- * @return weight of current flight
- */
-double Graph::_calcWeight(const Flight& flight) {
+    for (const auto& curr : flights_[idx]) {
+        neighbors.push_back(index_to_airpot_[curr.first]);
+    }
+
+    return neighbors;
+}
+
+// helper functions
+long double Graph::_calcWeight(const Flight& flight) {
     // find airports using id
     Airport* source = id_to_airpot_[flight.getSourceId()];
     Airport* destination = id_to_airpot_[flight.getDestinationId()];
 
     // do the calculate
     return calcDistance(source->latitude_, source->longitude_, destination->latitude_, destination->longitude_) + flight.getStops() * 50;
+}
+
+long double Graph::_calcWeight(int source_idx, int destination_idx) {
+    // find airports using id
+    Airport* source = index_to_airpot_[source_idx];
+    Airport* destination = index_to_airpot_[destination_idx];
+
+    // do the calculate
+    return calcDistance(source->latitude_, source->longitude_, destination->latitude_, destination->longitude_);
 }
 
 /**
@@ -167,4 +178,20 @@ void Graph::buildFloydWarshall() {
 
     // and setup
     floyd_warshall_ = FloydWarshall(size_, weight);
+}
+
+pair<int, int> Graph::foo() {
+    int max_nei = -1;
+    int max_idx = -1;
+    int curr_nei;
+    int idx = 0;
+    for (const auto& curr : flights_) {
+        curr_nei = curr.size();
+        if (curr_nei > max_nei) {
+            max_nei = curr_nei;
+            max_idx = idx;
+        }
+        idx++;
+    }
+    return pair<int, int>(max_idx, max_nei);
 }

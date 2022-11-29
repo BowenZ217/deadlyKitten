@@ -1,17 +1,17 @@
 #include "BFS.h"
 
-BFS::BFS(Graph& graph, int start) {
+BFS::BFS(Graph* graph, int start) {
     graph_ = graph;
     start_ = start;
-    queue_.push(graph_.getAirport(start));
 
-    visited.resize(graph_.getSize(), false);
-    visited[start] = true;
+    queue_.push(start);
+
+    visited_.resize(graph_->getSize(), false);
+    visited_[start] = true;
 }
 
 GraphTraversal::Iterator BFS::begin() {
-    GraphTraversal* bfs = new BFS(graph_, start_);
-    return GraphTraversal::Iterator(bfs, start_, graph_);
+    return GraphTraversal::Iterator(this, start_, graph_);
 }
 
 GraphTraversal::Iterator BFS::end() {
@@ -19,21 +19,22 @@ GraphTraversal::Iterator BFS::end() {
 }
 
 void BFS::add(int idx) {
-    Airport airport = graph_.getAirport(idx);
-    visited[idx] = true;
-    queue_.push(airport);
+    if (visited_[idx]) return;
+
+    queue_.push(idx);
+    visited_[idx] = true;
 }
 
-Airport BFS::pop() {
-    Airport temp = peek();
-    /**
-     * @todo Not sure whether airport is treated as visited after pushing to queue or popping from queue.
-    */
+int BFS::pop() {
+    int temp = peek();
+
     queue_.pop();
+    
     return temp;
 }
 
-Airport BFS::peek() const {
+int BFS::peek() const {
+    if (queue_.empty()) return -1;
     return queue_.front();
 }
 
@@ -42,5 +43,5 @@ bool BFS::empty() const {
 }
 
 bool BFS::isVisited(int idx) {
-    return visited[idx];
+    return visited_[idx];
 }

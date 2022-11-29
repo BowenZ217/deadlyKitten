@@ -9,6 +9,9 @@
 #include "FloydWarshall.h"
 #include "utils.h"
 
+#include <utility>
+using std::pair;
+
 using std::vector;
 using std::string;
 using std::unordered_map;
@@ -54,14 +57,51 @@ class Graph {
         vector<string> getShortestPath(const vector<string>& airports);
 
         /**
-         * overload operator = so that graph can be used as input to traversal.
-        */
+         * @brief Get Airport using index
+         * 
+         * @param idx index of airport
+         * @return Airport 
+         */
+        Airport* getAirport(int idx);
 
-        Airport getAirport(int idx);
-
+        /**
+         * @brief Get the size of graph
+         * 
+         * @return number of nodes 
+         */
         int getSize();
 
+        /**
+         * @brief Get the Neighbors of airport
+         * 
+         * @param idx index of that airport
+         * @return neighbors
+         */
+        vector<Airport*> getNeighbors(int idx);
+        
+        // helper functions
+        /**
+         * @brief Calculate the weights between two airpots
+         *
+         * @param flight current flight
+         *
+         * @return weight of current flight
+         */
+        long double _calcWeight(const Flight& flight);
 
+        /**
+         * @brief Calculate the weights between two airpots using index
+         *
+         * @param source index of source
+         * @param destination index of destination
+         *
+         * @return weight
+         */
+        long double _calcWeight(int source_idx, int destination_idx);
+
+        /**
+         * @brief overload operator = so that graph can be used as input to traversal.
+         */
         void operator=(const Graph &other) {
             size_ = other.size_;
             INF = 1e8;
@@ -72,6 +112,8 @@ class Graph {
             floyd_warshall_ = other.floyd_warshall_;
             flights_ = other.flights_;
         }
+
+        pair<int, int> foo();
 
     private:
         // Define infinite
@@ -86,9 +128,6 @@ class Graph {
         vector<unordered_map<int, Flight>> flights_;
 
         FloydWarshall floyd_warshall_;
-
-        // helper functions
-        double _calcWeight(const Flight& flight);
 
         void buildAirpots(const std::string& airportFileName);
         void buildFlights(const std::string& routeFileName);
