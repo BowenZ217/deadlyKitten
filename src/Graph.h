@@ -53,6 +53,26 @@ class Graph {
          */
         vector<string> getShortestPath(const vector<string>& airports);
 
+        /**
+         * overload operator = so that graph can be used as input to traversal.
+        */
+
+        Airport getAirport(int idx);
+
+        int getSize();
+
+
+        void operator=(const Graph &other) {
+            size_ = other.size_;
+            INF = 1e8;
+            airpots_ = other.airpots_;
+            id_to_airpot_ = other.id_to_airpot_;
+            index_to_airpot_ = other.index_to_airpot_;
+            flights_ = other.flights_;
+            floyd_warshall_ = other.floyd_warshall_;
+            flights_ = other.flights_;
+        }
+
     private:
         // Define infinite
         int INF = 1e8;

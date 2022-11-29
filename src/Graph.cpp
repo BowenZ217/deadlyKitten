@@ -36,6 +36,14 @@ vector<string> Graph::getShortestPath(const vector<string>& airports) {
     return path;
 }
 
+Airport* Graph::getAirport(int idx) {
+    return index_to_airpot_[idx];
+}
+
+int Graph::getSize() {
+    return size_;
+}
+
 // helper functions
 
 /**

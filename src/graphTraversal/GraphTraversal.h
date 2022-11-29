@@ -20,7 +20,7 @@ class GraphTraversal {
                 bool operator!=(const Iterator &other);
 
                 // member functions
-                Iterator(GraphTraversal* traversal, Airport start, Graph* graph_);
+                Iterator(GraphTraversal* traversal, int start, Graph graph_);
 
             private:
                 // private members
@@ -51,7 +51,7 @@ class GraphTraversal {
      * Add new point to the traversal
      * Virtual function. Derived class need to implement this
      */
-    virtual void add(const Airport & t) = 0;
+    virtual void add(int idx) = 0;
     /**
      * Remove and return the next point of the traversal
      * Virtual function. Derived class need to implement this
