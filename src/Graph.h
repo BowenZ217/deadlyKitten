@@ -9,9 +9,6 @@
 #include "FloydWarshall.h"
 #include "utils.h"
 
-#include <utility>
-using std::pair;
-
 using std::vector;
 using std::string;
 using std::unordered_map;
@@ -112,8 +109,6 @@ class Graph {
             floyd_warshall_ = other.floyd_warshall_;
             flights_ = other.flights_;
         }
-
-        pair<int, int> foo();
 
     private:
         // Define infinite

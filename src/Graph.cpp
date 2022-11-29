@@ -179,19 +179,3 @@ void Graph::buildFloydWarshall() {
     // and setup
     floyd_warshall_ = FloydWarshall(size_, weight);
 }
-
-pair<int, int> Graph::foo() {
-    int max_nei = -1;
-    int max_idx = -1;
-    int curr_nei;
-    int idx = 0;
-    for (const auto& curr : flights_) {
-        curr_nei = curr.size();
-        if (curr_nei > max_nei) {
-            max_nei = curr_nei;
-            max_idx = idx;
-        }
-        idx++;
-    }
-    return pair<int, int>(max_idx, max_nei);
-}
