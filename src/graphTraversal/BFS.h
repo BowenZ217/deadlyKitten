@@ -10,29 +10,29 @@
 class BFS: public GraphTraversal 
 {
     public:
-    /**
-     * @param graph The graph to be traversed
-     * @param start The starting Airport's index
-    */
-        BFS(Graph& graph, int start);
+        /**
+         * @param graph The graph to be traversed
+         * @param start The starting Airport's index
+        */
+        BFS(Graph* graph, int start);
 
         GraphTraversal::Iterator begin();
         GraphTraversal::Iterator end();
 
         void add(int idx);
-        Airport pop();
-        Airport peek() const;
+        int pop();
+        int peek() const;
         bool empty() const;
 
         /**
          * @param idx The index of Airport to be verified
         */
         bool isVisited(int idx);
-        Airport get_start;
 
     private:
-        Graph graph_;
+        // private members
+        Graph* graph_;
         int start_;
-        std::queue<Airport> queue_;
-        std::vector<bool> visited;
+        std::queue<int> queue_;
+        std::vector<bool> visited_;
 };

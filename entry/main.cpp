@@ -4,6 +4,7 @@
 
 #include "Airport.h"
 #include "Graph.h"
+#include "graphTraversal/BFS.h"
 #include "utils.h"
 
 using namespace std;
@@ -11,10 +12,11 @@ using namespace std;
 void example1();
 void example2();
 void example3();
+void example4();
 
 int main()
 {
-    example2();
+    example4();
     return 0;
 }
 
@@ -135,4 +137,19 @@ void example3() {
         cout << "[end]\n";
     }
     cout << "\n-----------------------------------------------------\n\n";
+}
+
+void example4() {
+    string airportFileName = "../data/airports.dat";
+    string routeFileName = "../data/routes.dat";
+    string airlineFileName = "../data/airlines.dat";
+
+    Graph g(airportFileName, routeFileName, airlineFileName);
+
+    BFS bfs(&g, 0);
+
+    for (auto curr : bfs) {
+        // curr is a pointer of airport
+        cout << "current airport : " << curr->name_ << " , idx = " << curr->index_ << endl;
+    }
 }
