@@ -179,3 +179,17 @@ void Graph::buildFloydWarshall() {
     // and setup
     floyd_warshall_ = FloydWarshall(size_, weight);
 }
+
+void Graph::buildDjikstras(){
+    vector<vector<double>> weight = vector<vector<double>>(size_, vector<double>(size_, INF));
+
+    // calc the weight
+    for (size_t source_id = 0; source_id < size_; ++source_id) {
+        for (const auto& curr_p : flights_[source_id]) {
+            weight[source_id][curr_p.first] = _calcWeight(curr_p.second);
+        }
+    }
+
+    // and setup
+    djikstras = Djikstras(size_, weight);
+}
