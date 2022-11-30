@@ -8,6 +8,7 @@ Graph::Graph(const string& airportFileName, const string& routeFileName, const s
     buildAirpots(airportFileName);
     buildFlights(routeFileName);
     buildFloydWarshall();
+    buildDjikstras();
 }
 
 vector<string> Graph::getShortestPath(const string& source, const string& destination) {

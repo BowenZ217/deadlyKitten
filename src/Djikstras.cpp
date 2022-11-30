@@ -1,6 +1,7 @@
 #include "Djikstras.h"
 
 
+
 Djikstras::Djikstras() {
     /* do nothing */
 }
@@ -10,8 +11,8 @@ Djikstras::Djikstras(unsigned size, const vector<vector<double>>& graph) {
 
     // check if already finish doing for `next_`
     string save = "../data/Djikstras.save";
-    next_ = fileToIntVector(save, size_);
-    if (!next_.empty()) return;
+    //next_ = fileToIntVector(save, size_);
+    //if (!next_.empty()) return;
 
     
     initialise(graph);
@@ -21,12 +22,10 @@ vector<int> Djikstras::getShortestPath(int source, int destination) {
 
     //double for distance, int for destination
     typedef std::pair<double, int> DistPair;
-    //current to previous
-    
-    std::priority_queue<DistPair, std::vector<DistPair>, std::greater<DistPair>> pq;
+    std::priority_queue<DistPair> pq;
     //push source
     pq.push(std::make_pair(0, source));
-    std::unordered_map<int, bool> visited;
+    std::vector<bool> visited;
     //initial visited map
     for (unsigned i = 0; i < size_; i++) {
         visited[i] = false;
@@ -37,7 +36,7 @@ vector<int> Djikstras::getShortestPath(int source, int destination) {
         pq.pop();
         std::vector<int> adj;
         for(unsigned i = 0; i < size_; i++){
-            if(next_[curr][i]!= -1){
+            if(dist[curr][i]!= INF && curr != i){
                 adj.push_back(i);
             }
         }
@@ -52,7 +51,7 @@ vector<int> Djikstras::getShortestPath(int source, int destination) {
                 
                 if (dist[source][adjV] > dist[source][curr] + dist[curr][adjV]) {
                     dist[source][adjV] = dist[source][curr] + dist[curr][adjV];
-                    next_[source][adjV] = next_[source][curr];
+                    prev_[adjV] = curr;
                     pq.push(std::make_pair(dist[source][adjV],adjV));
                     
                 }
@@ -62,16 +61,16 @@ vector<int> Djikstras::getShortestPath(int source, int destination) {
 
     }
 
-    vector<int> path;
-    // If there's no path between, return empty
-    if (next_[source][destination] == -1)
+    std::vector<int> path;
+    //if there is no path, return empty;
+    if(prev_[destination] == -1){
         return path;
- 
+    }
     // Start to find the path
     path.push_back(source);
-    while (source != destination) {
-        source = next_[source][destination];
-        path.push_back(source);
+    while (destination != source) {
+        destination = prev_[destination];
+        path.insert(path.begin(),destination);
     }
 
     return path;
@@ -85,12 +84,15 @@ vector<int> Djikstras::getShortestPath(int source, int destination) {
  * 
  * @param graph Initial graph
  * @param dist data need to initialize
- * @param sptSet record included vertices
+ * @param prev_ record previous vertices
  */
 void Djikstras::initialise(const vector<vector<double>>& graph) {
     dist = graph;
-
-    for (unsigned i = 0; i < size_; i++) {
+    //initial prev
+    for (unsigned i = 0; i < size_; i++){
+        prev_.push_back(-1);
+    }
+    /*for (unsigned i = 0; i < size_; i++) {
         for (unsigned j = 0; j < size_; j++) {
             // check if edge not exist
             if (dist[i][j] == INF)
@@ -98,7 +100,7 @@ void Djikstras::initialise(const vector<vector<double>>& graph) {
             else
                 next_[i][j] = j;
         }
-    }
+    }*/
     cout << "initialising Djikstras" << endl;
 
     
@@ -119,5 +121,6 @@ void Djikstras::initialise(const vector<vector<double>>& graph) {
         }
     }*/
     // after calc, save it, so maybe can used in next time
-    vectorToFile("../data/Djikstras.save", next_);
+    
+    //vectorToFile("../data/Djikstras.save", next_);
 }

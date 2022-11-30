@@ -7,7 +7,7 @@
 
 
 #include "utils.h"
-#include "BFS.h"
+//#include "BFS.h"
 
 using std::vector;
 using std::string;
@@ -56,7 +56,7 @@ class Djikstras {
         unsigned size_;
         
         
-        vector<vector<int>> next_;
+        vector<int> prev_;
         vector<vector<double>> dist;
 
 
