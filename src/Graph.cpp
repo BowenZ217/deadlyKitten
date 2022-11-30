@@ -192,5 +192,5 @@ void Graph::buildDjikstras(){
     }
 
     // and setup
-    djikstras = Djikstras(size_, weight);
+    // djikstras = Djikstras(size_, weight);
 }

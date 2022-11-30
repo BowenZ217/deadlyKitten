@@ -16,7 +16,7 @@ void example4();
 
 int main()
 {
-    example4();
+    example2();
     return 0;
 }
 
