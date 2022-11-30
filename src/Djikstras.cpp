@@ -32,7 +32,7 @@ vector<int> Djikstras::getShortestPath(int source, int destination) {
     }
 
     while (pq.top().second != destination) {
-        int curr = pq.top().second;
+        unsigned curr = pq.top().second;
         pq.pop();
         std::vector<int> adj;
         for(unsigned i = 0; i < size_; i++){
