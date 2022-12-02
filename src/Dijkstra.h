@@ -12,7 +12,7 @@
 using std::vector;
 using std::string;
 
-class Djikstras {
+class Dijkstra {
     public:
         // constructors
         /**
@@ -22,7 +22,7 @@ class Djikstras {
         Djikstras();
         
         /**
-         * @brief Construct a new Djikstras Warshall object
+         * @brief Construct a new Dijkstra Warshall object
          * 
          * @param size number of vertex
          * @param graph each index is its weight of graph. 
