@@ -8,7 +8,7 @@ Graph::Graph(const string& airportFileName, const string& routeFileName, const s
     buildAirpots(airportFileName);
     buildFlights(routeFileName);
     buildFloydWarshall();
-    buildDjikstras();
+    
 }
 
 vector<string> Graph::getShortestPath(const string& source, const string& destination) {
@@ -179,18 +179,20 @@ void Graph::buildFloydWarshall() {
 
     // and setup
     floyd_warshall_ = FloydWarshall(size_, weight);
+    
 }
 
-void Graph::buildDjikstras(){
+/*void Graph::buildDijkstra(){
     vector<vector<double>> weight = vector<vector<double>>(size_, vector<double>(size_, INF));
-
+    int source = 0;
     // calc the weight
     for (size_t source_id = 0; source_id < size_; ++source_id) {
         for (const auto& curr_p : flights_[source_id]) {
             weight[source_id][curr_p.first] = _calcWeight(curr_p.second);
         }
+        //store source index
+        //source.push_back((int)source_id);
     }
-
     // and setup
-    // djikstras = Djikstras(size_, weight);
-}
+    dijkstra = Dijkstra(size_, weight,source);
+}*/

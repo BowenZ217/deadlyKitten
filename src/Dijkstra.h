@@ -19,7 +19,7 @@ class Dijkstra {
          * @brief Default constructor
          * 
          */
-        Djikstras();
+        Dijkstra();
         
         /**
          * @brief Construct a new Dijkstra Warshall object
@@ -29,7 +29,7 @@ class Dijkstra {
          *      EX: graph[source][destination] = weight from source to destination. (INF for no edges)
          * @param source index of source airpot
          */
-        Djikstras(unsigned size, const vector<vector<double>>& graph, int source);
+        Dijkstra(unsigned size, const vector<vector<double>>& graph, int source);
 
         // seter
 
@@ -49,7 +49,9 @@ class Dijkstra {
          * 
          * @return index of airports need to go through (in order)
          */
-        vector<int> getShortestPath(int destination);
+        
+        void ShortestPath(int source);
+        vector<int> getShortestPath(int source,int destination);
     private:
         // Define infinite
         int INF = 1e8;
@@ -59,8 +61,10 @@ class Dijkstra {
         int source_;
         
         vector<int> prev_;
-        vector<int> dist_;
+        vector<double> dist_;
         vector<vector<double>> graph_;
+        vector<vector<std::pair<int, double>>> adjAirport;
+        
 
 
         // helper function
