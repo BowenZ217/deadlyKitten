@@ -8,7 +8,7 @@
 #include "Flight.h"
 #include "FloydWarshall.h"
 #include "utils.h"
-#include "Djikstras.h"
+#include "Dijkstra.h"
 
 using std::vector;
 using std::string;
@@ -69,6 +69,7 @@ class Graph {
          */
         int getSize();
 
+        
         /**
          * @brief Get the Neighbors of airport
          * 
@@ -124,10 +125,10 @@ class Graph {
         vector<unordered_map<int, Flight>> flights_;
 
         FloydWarshall floyd_warshall_;
-        Djikstras djikstras;
+        Dijkstra dijkstra;
 
         void buildAirpots(const std::string& airportFileName);
         void buildFlights(const std::string& routeFileName);
         void buildFloydWarshall();
-        void buildDjikstras();
+        
 };

@@ -12,24 +12,24 @@
 using std::vector;
 using std::string;
 
-class Djikstras {
+class Dijkstra {
     public:
         // constructors
         /**
          * @brief Default constructor
          * 
          */
-        Djikstras();
+        Dijkstra();
         
         /**
-         * @brief Construct a new Djikstras Warshall object
+         * @brief Construct a new Dijkstra Warshall object
          * 
          * @param size number of vertex
          * @param graph each index is its weight of graph. 
          *      EX: graph[source][destination] = weight from source to destination. (INF for no edges)
          * @param source index of source airpot
          */
-        Djikstras(unsigned size, const vector<vector<double>>& graph, int source);
+        Dijkstra(unsigned size, const vector<vector<double>>& graph, int source);
 
         // seter
 
@@ -49,7 +49,9 @@ class Djikstras {
          * 
          * @return index of airports need to go through (in order)
          */
-        vector<int> getShortestPath(int destination);
+        
+        void ShortestPath(int source);
+        vector<int> getShortestPath(int source,int destination);
     private:
         // Define infinite
         int INF = 1e8;
@@ -59,8 +61,10 @@ class Djikstras {
         int source_;
         
         vector<int> prev_;
-        vector<int> dist_;
+        vector<double> dist_;
         vector<vector<double>> graph_;
+        vector<vector<std::pair<int, double>>> adjAirport;
+        
 
 
         // helper function
