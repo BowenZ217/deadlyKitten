@@ -15,7 +15,7 @@ class Centrality
          * @brief The constructor of Centrality.
          * @param graph the graph used to calculate the centrality of vertices.
         */
-        Centrality(Graph graph);
+        Centrality(Graph* graph);
 
 
         /**
@@ -31,7 +31,7 @@ class Centrality
          * @param method algorithm chosen to find the shortest path between two vertices. Either it's
          * Dijkstra or FloydWarshall.
         */
-        void calculate_centrality(std::string method);
+        void calculate_centrality();
    
 
     private:
@@ -40,5 +40,6 @@ class Centrality
          * Key represents the index of cities. Value represents the number of times a city has been 
          * visited in shortest paths. The central vertices have the highest frequencies.
         */ 
-        std::unordered_map<int, int> frequency;
+        std::unordered_map<std::string, int> frequency_;
+        std::vector<std::vector<int>> combinations_;
 };

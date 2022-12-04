@@ -63,6 +63,13 @@ class Graph {
         Airport* getAirport(int idx);
 
         /**
+         * @brief Get Airport using airport name
+         * @param name name of the airport
+         * @return Airport
+        */
+        Airport getAirport(std::string name);
+
+        /**
          * @brief Get the size of graph
          * 
          * @return number of nodes 

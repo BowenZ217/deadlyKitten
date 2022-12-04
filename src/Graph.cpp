@@ -41,6 +41,10 @@ Airport* Graph::getAirport(int idx) {
     return index_to_airpot_[idx];
 }
 
+Airport Graph::getAirport(std::string name) {
+    return airpots_[name];
+}
+
 int Graph::getSize() {
     return size_;
 }
