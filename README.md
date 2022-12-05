@@ -25,6 +25,34 @@ In addition, we have another sub dataset “airport.dat”, which contains the l
 
 Based on the shortest paths, we further want to calculate the betweenness centrality to measure the importance of airports over the world.
 
+## Code Use Instruction
+### check out the code
+```
+git clone https://github.com/BowenZ217/deadlyKittenAirline.git
+```
+### calculate shortest path with given start point
+
+### generate airports‘ centrality
+
+## File List
+### Graph constructor
+1. Airport.h & cpp
+2. Flight.h & cpp
+3. Graph.h & cpp
+### Graph traversal
+1. src/graphTraversal/BFS.h & cpp
+create a BFS object by using 
+2. src/graphTraversal/DFS.h & cpp
+create a DFS object by 
+
+### Dijkstra's Implementation
+Dijstra.h & cpp
+
+### FloydWarshall Implementation
+FloydWarshall.h & cpp
+
+### Centrality Implementation
+Centrality.h & cpp
 ## References
 
 * [CS 225 Final Project](https://courses.engr.illinois.edu/cs225/fa2022/pages/final_project.html)
