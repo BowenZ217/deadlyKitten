@@ -32,14 +32,30 @@ TBD
 TBD
 
 ## Running Instruction
-TBD
 ### check out the code
 ```
 git clone https://github.com/BowenZ217/deadlyKittenAirline.git
 ```
-### calculate shortest path with given start point
+### build code
+run ```make
+make
+```
+in the terminal.
 
-### generate airports‘ centrality
+### input
+Open **input.txt**
+1. given start & destination: input airport name, use comma to split (example: Goroka Airport,Thule Air Base)
+2. require centrality: input true
+
+### run code
+run ```main
+./main
+```
+in the terminal
+
+### output
+results will export automatically in terminal window or you can open the **output.txt** file which is located in your root folder.
+(example:)
 
 ## File List
 ### Graph constructor
@@ -73,5 +89,9 @@ If an airport is passed by shortest path with high frequency, it is an important
 calculating the frequency by using the matrix generated in FloydWarshall, we can know the significance of each airports.
 
 ## Test Case
+1. File io
+2. graph shortest path calculate
+3. centrality
+4. graph traversal test
 
 * [CS 225 Final Project](https://courses.engr.illinois.edu/cs225/fa2022/pages/final_project.html)
