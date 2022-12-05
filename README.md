@@ -25,7 +25,14 @@ In addition, we have another sub dataset “airport.dat”, which contains the l
 
 Based on the shortest paths, we further want to calculate the betweenness centrality to measure the importance of airports over the world.
 
-## Code Use Instruction
+## Presentation Video Link
+TBD
+
+## Written Report
+TBD
+
+## Running Instruction
+TBD
 ### check out the code
 ```
 git clone https://github.com/BowenZ217/deadlyKittenAirline.git
@@ -37,22 +44,34 @@ git clone https://github.com/BowenZ217/deadlyKittenAirline.git
 ## File List
 ### Graph constructor
 1. Airport.h & cpp
+containing the information of airports: airport_id_, index_, name_, country_, city_, latitude_, and longitude.
+
 2. Flight.h & cpp
+containing the information of flights: airline_id, source_id, destination_id
+
 3. Graph.h & cpp
+constructing a graph by using the airportFile, routeFile, and airlineFile: aiport_index as vertices, flight_index as edges.
+graph[source][destination] = distance from source to destination. (INF for no edges)
+
 ### Graph traversal
 1. src/graphTraversal/BFS.h & cpp
-create a BFS object by using 
+create a BFS object to traversal the graph. 
 2. src/graphTraversal/DFS.h & cpp
-create a DFS object by 
-
-### Dijkstra's Implementation
-Dijstra.h & cpp
+create a DFS object to traversal the graph. 
 
 ### FloydWarshall Implementation
 FloydWarshall.h & cpp
+After initializing, a weight matrix is generated and saved as FloydWarshall.save. Then using the matrix to get the shortest path with shorter time.
 
-### Centrality Implementation
+### Dijkstra's Implementation
+Dijstra.h & cpp
+calculating the shortest path With given start airport.
+
+### Betweenness Centrality Implementation
 Centrality.h & cpp
-## References
+If an airport is passed by shortest path with high frequency, it is an important transit point in the whole graph.
+calculating the frequency by using the matrix generated in FloydWarshall, we can know the significance of each airports.
+
+## Test Case
 
 * [CS 225 Final Project](https://courses.engr.illinois.edu/cs225/fa2022/pages/final_project.html)
