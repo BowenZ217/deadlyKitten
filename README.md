@@ -36,8 +36,8 @@ TBD
 ```
 git clone https://github.com/BowenZ217/deadlyKittenAirline.git
 ```
-### build code
-run ```make
+### to build code, you need to run:
+ ```make
 make
 ```
 in the terminal.
@@ -47,51 +47,77 @@ Open **input.txt**
 1. given start & destination: input airport name, use comma to split (example: Goroka Airport,Thule Air Base)
 2. require centrality: input true
 
-### run code
-run ```main
+### to run code, you need to run:
+ ```main
 ./main
 ```
 in the terminal
 
 ### output
 results will export automatically in terminal window or you can open the **output.txt** file which is located in your root folder.
-(example:)
+    (example:)
+
+### to test code, you need to run:
+ ```test
+./test
+```
+in the terminal
+
+test results will export automatically in terminal window or you can open the **output.txt** file which is located in your test folder.
 
 ## File List
 ### Graph constructor
-1. Airport.h & cpp
-containing the information of airports: airport_id_, index_, name_, country_, city_, latitude_, and longitude.
+* [Airport.h](https://github.com/BowenZ217/deadlyKittenAirline/blob/main/src/Airport.h) & [Airport.cpp](https://github.com/BowenZ217/deadlyKittenAirline/blob/main/src/Airport.cpp)
 
-2. Flight.h & cpp
-containing the information of flights: airline_id, source_id, destination_id
+    containing the information of airports: airport_id_, index_, name_, country_, city_, latitude_, and longitude.
 
-3. Graph.h & cpp
-constructing a graph by using the airportFile, routeFile, and airlineFile: aiport_index as vertices, flight_index as edges.
-graph[source][destination] = distance from source to destination. (INF for no edges)
+* [Flight.h](https://github.com/BowenZ217/deadlyKittenAirline/blob/main/src/Flight.h) & [Flight.cpp](https://github.com/BowenZ217/deadlyKittenAirline/blob/main/src/Flight.cpp)
+
+    containing the information of flights: airline_id, source_id, destination_id
+
+* [Graph.h](https://github.com/BowenZ217/deadlyKittenAirline/blob/main/src/Graph.h) & [Graph.cpp](https://github.com/BowenZ217/deadlyKittenAirline/blob/main/src/Graph.cpp)
+
+    constructing a graph by using the airportFile, routeFile, and airlineFile: aiport_index as vertices, flight_index as edges.
+
+    graph[source][destination] = distance from source to destination. (INF for no edges)
 
 ### Graph traversal
-1. src/graphTraversal/BFS.h & cpp
+
+
+* [BFS.h](https://github.com/BowenZ217/deadlyKittenAirline/blob/main/src/graphTraversal/BFS.h) & [BFS.cpp](https://github.com/BowenZ217/deadlyKittenAirline/blob/main/src/graphTraversal/BFS.cpp)
 create a BFS object to traversal the graph. 
-2. src/graphTraversal/DFS.h & cpp
+
+* DFS.h & cpp (unfinished)
 create a DFS object to traversal the graph. 
 
 ### FloydWarshall Implementation
-FloydWarshall.h & cpp
-After initializing, a weight matrix is generated and saved as FloydWarshall.save. Then using the matrix to get the shortest path with shorter time.
+* [FloydWarshall.h](https://github.com/BowenZ217/deadlyKittenAirline/blob/main/src/FloydWarshall.h)
+* [FloydWarshall.cpp](https://github.com/BowenZ217/deadlyKittenAirline/blob/main/src/FloydWarshall.cpp)
+
+    After initializing, a weight matrix is generated and saved as FloydWarshall.save. Then using the matrix to get the shortest path with shorter time.
 
 ### Dijkstra's Implementation
-Dijstra.h & cpp
-calculating the shortest path With given start airport.
+* [Dijstra.h](https://github.com/BowenZ217/deadlyKittenAirline/blob/main/src/Dijkstra.h)
+* [Dijstra.cpp](https://github.com/BowenZ217/deadlyKittenAirline/blob/main/src/Dijkstra.cpp)
+
+    calculating the shortest path With given start airport.
 
 ### Betweenness Centrality Implementation
-Centrality.h & cpp
-If an airport is passed by shortest path with high frequency, it is an important transit point in the whole graph.
-calculating the frequency by using the matrix generated in FloydWarshall, we can know the significance of each airports.
+* [Centrality.h](https://github.com/BowenZ217/deadlyKittenAirline/blob/main/src/Centrality.h)
+* [Centrality.cpp](https://github.com/BowenZ217/deadlyKittenAirline/blob/main/src/Centrality.cpp)
+
+    If an airport is passed by shortest path with high frequency, it is an important transit point in the whole graph.
+    calculating the frequency by using the matrix generated in FloydWarshall, we can know the significance of each airports.
 
 ## Test Case
-1. File io
-2. graph shortest path calculate
-3. centrality
-4. graph traversal test
 
-* [CS 225 Final Project](https://courses.engr.illinois.edu/cs225/fa2022/pages/final_project.html)
+all expected output csv files are in the test folder.
+* File io
+TEST_CASE("Test datToVector", "[utils]")
+* graph traversal test
+* graph shortest path calculate
+* centrality
+
+
+
+[CS 225 Final Project](https://courses.engr.illinois.edu/cs225/fa2022/pages/final_project.html)
