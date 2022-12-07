@@ -56,7 +56,7 @@ vector<int> Dijkstra::getShortestPath(int source, int destination){
             destination = prev_[destination];
             path.insert(path.begin(),destination);
         }
-
+        
         return path;
 }
 // helper function
@@ -76,13 +76,17 @@ void Dijkstra::initialise(const vector<vector<double>>& graph,int source) {
         prev_.push_back(-1);
     }
     //initial adjAirport
-    for (unsigned i = 0; i < graph_.size(); i++) {
+     for (unsigned i = 0; i < graph_.size(); i++) {
+        vector<std::pair<int, double>> temp;
         for(unsigned j = 0; j < graph_[i].size(); j++){
             if(graph_[i][j] != INF){
                 double cost = graph_[i][j];
-                adjAirport[i].push_back(std::make_pair(j, cost));
+                temp.push_back(make_pair(j,cost));  
             }
         }
+        
+            adjAirport.push_back(temp);
+       
     }
     dist_[source] = 0;
     cout << "initialising Dijkstra" << endl;
