@@ -1,10 +1,13 @@
 #include <catch2/catch_test_macros.hpp>
 
 #include "utils.h"
+#include "Graph.h"
+#include "Centrality.h"
 
 #include <iostream>
 #include <string>
 #include <vector>
+
 
 using std::cout;
 using std::endl;
@@ -52,4 +55,25 @@ TEST_CASE("Test Shortest Path", "ten-vertices") {
 
 TEST_CASE("Test Shortest Path", "fifteen-vertices") {
     
+}
+
+TEST_CASE("Test Centrality", "small graph") {
+    Graph* graph = new Graph(airportFileName, routeFileName, airlineFileName);
+    Centrality centrality(graph);
+    // This is a vector of expected frequency for the test graph
+    // We might use networkx to calculate?
+    std::vector<int> expected ={6, 4, 3, 3, 1};
+
+    centrality.calculate_centrality();
+
+    for (unsigned i = 0; i < expected.size(); i++) {
+        // Might define public getter to get those values
+        std::string airportName = centrality.graph_->getAirport(i)->name_;
+
+        int expectedFreq = expected[i];
+        // Need to define public getter to get frequency
+        int actualFreq = centrality.frequency_[airportName];
+
+        REQUIRE(actualFreq == expectedFreq);
+    }
 }
