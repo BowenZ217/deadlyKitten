@@ -81,7 +81,7 @@ void Dijkstra::initialise(const vector<vector<double>>& graph,int source) {
         for(unsigned j = 0; j < graph_[i].size(); j++){
             if(graph_[i][j] != INF){
                 double cost = graph_[i][j];
-                temp.push_back(make_pair(j,cost));  
+                temp.push_back(std::make_pair(j,cost));  
             }
         }
         

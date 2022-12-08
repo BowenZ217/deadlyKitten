@@ -4,6 +4,12 @@ Graph::Graph() {
     /* do nothing */
 }
 
+Graph::Graph(const string& airportFileName, const string& routeFileName) {
+    buildAirpotsClean(airportFileName);
+    buildFlightsClean(routeFileName);
+    buildFloydWarshall();
+}
+
 Graph::Graph(const string& airportFileName, const string& routeFileName, const string& airlineFileName) {
     buildAirpots(airportFileName);
     buildFlights(routeFileName);
@@ -135,6 +141,83 @@ void Graph::buildFlights(const std::string& routeFileName) {
             curr_data.erase(curr_data.begin() + 2, curr_data.begin() + 3);
             curr_data.erase(curr_data.begin(), curr_data.begin() + 1);
 
+            // try to add this airport
+            auto source = id_to_airpot_.find(std::stoi(curr_data[1]));
+            auto destination = id_to_airpot_.find(std::stoi(curr_data[2]));
+
+            // check if airport not exist
+            if (source == id_to_airpot_.end() || destination == id_to_airpot_.end()) {
+                // cout << "sourse id = " << curr_data[1] << " to destination id = " << curr_data[2] << " can not exist." << endl;
+                continue;
+            }
+
+            // also check if it is repeated
+            auto it = flights_[source->second->index_].find(destination->second->index_);
+            if (it != flights_[source->second->index_].end()) {
+                // if is, compare with prev one, take the one with smaller stops
+                int curr_stops = std::stoi(curr_data[3]);
+                if (it->second.getStops() > curr_stops) {
+                    it->second.setStops(curr_stops);
+                    it->second.setAirlineID(std::stoi(curr_data[0]));
+                }
+                continue;
+            }
+
+            flights_[source->second->index_][destination->second->index_] = Flight(curr_data);
+        }
+        catch (const std::exception& e) {
+            // if meet error
+            // cout << "Airport id : " << curr_data[0] << " meet error : " << e.what() << endl;
+        }
+    }
+}
+
+/**
+ * @brief helper function to initialize `airpots_` with cleaned data
+ * 
+ * @param airportFileName name of file which store information of airports
+ */
+void Graph::buildAirpotsClean(const std::string& airportFileName) {
+    // init
+    vector<vector<string>> data = fileToVector(airportFileName, 6);
+    size_ = 0;
+    int i = 1;
+
+    // insert data
+    for (auto& curr_data : data) {
+        try {
+            // check if it is repeated
+            auto it = airpots_.find(curr_data[1]);
+            if (it != airpots_.end()) {
+                // cout << "Airport name: \"" << curr_data[1] << "\" is repeated.\n";
+                curr_data[1] = curr_data[1] + " " + std::to_string(i++);
+                // cout << "change it's name to \"" << curr_data[1] << "\"." << endl << endl;
+            }
+            // try to add this airport
+            airpots_[curr_data[1]] = Airport(size_++, curr_data);
+            id_to_airpot_[std::stoi(curr_data[0])] = &(airpots_[curr_data[1]]);
+            index_to_airpot_.push_back(&(airpots_[curr_data[1]]));
+        }
+        catch (const std::exception& e) {
+            // if meet error
+            // cout << "Airport id : " << curr_data[0] << " meet error : " << e.what() << endl;
+        }
+    }
+    flights_.resize(size_);
+}
+
+/**
+ * @brief helper function to initialize `flights_` with cleaned data
+ * 
+ * @param airportFileName name of file which store information of routes
+ */
+void Graph::buildFlightsClean(const std::string& routeFileName) {
+    // init
+    vector<vector<string>> data = fileToVector(routeFileName, 4);
+
+    // insert data
+    for (auto& curr_data : data) {
+        try {
             // try to add this airport
             auto source = id_to_airpot_.find(std::stoi(curr_data[1]));
             auto destination = id_to_airpot_.find(std::stoi(curr_data[2]));

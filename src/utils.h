@@ -23,6 +23,15 @@ using std::endl;
  * @brief Transform the data the file to a 2d vector.
  * 
  * @param fileName Name of the file to be read from.
+ * 
+ * @return data in this file, in 2d vector
+ */
+vector<vector<string>> fileToVector(const string& fileName);
+
+/**
+ * @brief Transform the data the file to a 2d vector.
+ * 
+ * @param fileName Name of the file to be read from.
  * @param Size the number of elements contain in each vector
  * 
  * @return data in this file, in 2d vector

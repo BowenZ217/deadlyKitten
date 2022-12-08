@@ -29,6 +29,14 @@ class Graph {
          * 
          * @param airportFileName name of file which store information of airports
          * @param routeFileName name of file which store information of routes
+         */
+        Graph(const string& airportFileName, const string& routeFileName);
+
+        /**
+         * constructor by files
+         * 
+         * @param airportFileName name of file which store information of airports
+         * @param routeFileName name of file which store information of routes
          * @param airlineFileName name of file which store information of airlines
          */
         Graph(const string& airportFileName, const string& routeFileName, const string& airlineFileName);
@@ -134,6 +142,8 @@ class Graph {
         FloydWarshall floyd_warshall_;
         Dijkstra dijkstra;
 
+        void buildAirpotsClean(const std::string& airportFileName);
+        void buildFlightsClean(const std::string& routeFileName);
         void buildAirpots(const std::string& airportFileName);
         void buildFlights(const std::string& routeFileName);
         void buildFloydWarshall();

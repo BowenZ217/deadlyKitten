@@ -1,5 +1,50 @@
 #include "utils.h"
 
+vector<vector<string>> fileToVector(const string& fileName) {
+    // init
+    vector<vector<string>> data;
+    ifstream dataFile(fileName);
+    string currLine;
+
+    // check if meet problem with opening the file
+    if (!dataFile.is_open()) {
+        std::cout << "Fail to open \"" << fileName << "\". Please check the file path and name." << std::endl;
+        throw std::invalid_argument("Wrong file name");
+        return data;
+    }
+
+    // function to check if a char is not needed
+    auto is_new_line = [](auto ch) { return (ch == '\n' || ch == '\r' || ch == '\"'); };
+    
+    // start to fill in data
+    while (getline(dataFile, currLine)) {
+        vector<string> temp;
+
+        // start to split current line by comma
+        stringstream s_stream(currLine);
+
+        while(s_stream.good()) {
+            string substr;
+            // get first string delimited by comma
+            getline(s_stream, substr, ',');
+
+            // Remove newline character from string
+            substr.erase(std::remove_if(substr.begin(), substr.end(), is_new_line), substr.end());
+
+            temp.push_back(trim(substr));
+        }
+
+        data.push_back(temp);
+    }
+
+    // check if it contains at least 1 information
+    if (data.size() == 0) {
+        cout << "Reads 0 line from \"" << fileName << "\". Please try with another file." << endl;
+        throw std::invalid_argument("Wrong file name");
+    }
+    return data;
+}
+
 vector<vector<string>> fileToVector(const string& fileName, unsigned size) {
     // init
     vector<vector<string>> data;

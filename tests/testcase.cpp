@@ -29,6 +29,16 @@ bool compareVector(const vector<vector<string>>& actual, const vector<vector<str
     return true;
 }
 
+bool compareVector(const vector<string>& actual, const vector<string>& vec) {
+    unsigned size_ = actual.size();
+
+    for (unsigned i = 0; i < size_; ++i) {
+        if (actual.at(i) != vec.at(i)) return false;
+    }
+
+    return true;
+}
+
 TEST_CASE("Test datToVector", "[utils]") {
     string file_name = "../tests/test_dat_to_vector.dat";
 
@@ -45,19 +55,41 @@ TEST_CASE("Test datToVector", "[utils]") {
     REQUIRE(compareVector(actual, result, 5));
 }
 
-TEST_CASE("Test Shorest Path", "five-vertices") {
+TEST_CASE("Test Shorest Path V5 E12", "[shortest-path]") {
+    string airportFileName = "../test_data/V5E12_vertex.csv";
+    string routeFileName = "../test_data/V5E12_edge.csv";
+    string shortestPathFileName = "../test_data/V5E12_shortest_path.csv";
+
+    // init
+    vector<vector<string>> shortest_path = fileToVector(shortestPathFileName);
+    cout << "shortest_path size = " << shortest_path.size() << endl;
+    Graph g(airportFileName, routeFileName);
+    vector<string> path;
+
+    // checking
+    for (const auto& curr_p : shortest_path) {
+        cout << "curr_p size = " << curr_p.size() << endl;
+        path = g.getShortestPath(curr_p[0], curr_p[curr_p.size() - 1]);
+        cout << " start checking" << endl;
+        compareVector(curr_p, path);
+        cout << " end checking" << endl;
+    }
+}
+
+TEST_CASE("Test Shortest Path V10 E50", "[shortest-path]") {
 
 }
 
-TEST_CASE("Test Shortest Path", "ten-vertices") {
-
-}
-
-TEST_CASE("Test Shortest Path", "fifteen-vertices") {
+TEST_CASE("Test Shortest Path V15 E30", "[shortest-path]") {
     
 }
 
-TEST_CASE("Test Centrality", "small graph") {
+TEST_CASE("Test Centrality", "[Centrality]") {
+    /*
+    string airportFileName = "../data/airports.dat";
+    string routeFileName = "../data/routes.dat";
+    string airlineFileName = "../data/airlines.dat";
+
     Graph* graph = new Graph(airportFileName, routeFileName, airlineFileName);
     Centrality centrality(graph);
     // This is a vector of expected frequency for the test graph
@@ -76,4 +108,6 @@ TEST_CASE("Test Centrality", "small graph") {
 
         REQUIRE(actualFreq == expectedFreq);
     }
+    delete graph;
+     */
 }
