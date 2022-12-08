@@ -51,7 +51,9 @@ class Dijkstra {
          */
         
         void ShortestPath(int source);
-        vector<int> getShortestPath(int source,int destination);
+        vector<int> getShortestPath(int destination);
+        vector<double> getShortestDistance();
+        double getShortestDistance(int destination);
     private:
         // Define infinite
         int INF = 1e8;
