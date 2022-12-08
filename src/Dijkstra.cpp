@@ -19,12 +19,13 @@ void Dijkstra::setSource(int source){
     source_ = source;
 }
 void Dijkstra::ShortestPath(int source){
-    dist_[source] = 0;
+    setSource(source);
+    dist_[source_] = 0;
     //double for distance, int for destination
     typedef std::pair<double, int> DistPair;
     std::priority_queue<DistPair,std::vector<DistPair>,std::greater<DistPair>> pq;
     //push source
-    pq.push(std::make_pair(0, source));
+    pq.push(std::make_pair(0, source_));
     
     while(!pq.empty()){
         int curr = pq.top().second;
@@ -43,7 +44,7 @@ void Dijkstra::ShortestPath(int source){
         }
     }
 }
-vector<int> Dijkstra::getShortestPath(int source, int destination){
+vector<int> Dijkstra::getShortestPath(int destination){
     std::vector<int> path;
         //if there is no path, return empty;
         if(prev_[destination] == -1){
@@ -52,12 +53,21 @@ vector<int> Dijkstra::getShortestPath(int source, int destination){
         // Start to find the path
         path.push_back(destination);
 
-        while (destination != source) {
+        while (destination != source_) {
             destination = prev_[destination];
             path.insert(path.begin(),destination);
         }
         
         return path;
+}
+//shortest path to every airport
+vector<double> Dijkstra::getShortestDistance(){
+    return dist_;
+}
+
+//shortest path to given airport
+double Dijkstra::getShortestDistance(int destination){
+    return dist_[destination];
 }
 // helper function
 
