@@ -41,3 +41,15 @@ TEST_CASE("Test datToVector", "[utils]") {
 
     REQUIRE(compareVector(actual, result, 5));
 }
+
+TEST_CASE("Test Shorest Path", "five-vertices") {
+
+}
+
+TEST_CASE("Test Shortest Path", "ten-vertices") {
+
+}
+
+TEST_CASE("Test Shortest Path", "fifteen-vertices") {
+    
+}
