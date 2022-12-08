@@ -3,11 +3,13 @@
 #include "utils.h"
 #include "Graph.h"
 #include "Centrality.h"
+#include "Dijkstra.h"
 
 #include <iostream>
 #include <string>
 #include <vector>
-
+#include <fstream>
+#include <sstream>
 
 using std::cout;
 using std::endl;
@@ -55,6 +57,7 @@ TEST_CASE("Test datToVector", "[utils]") {
     REQUIRE(compareVector(actual, result, 5));
 }
 
+<<<<<<< HEAD
 TEST_CASE("Test Shorest Path V5 E12", "[shortest-path]") {
     string airportFileName = "../test_data/V5E12_vertex.csv";
     string routeFileName = "../test_data/V5E12_edge.csv";
@@ -77,7 +80,13 @@ TEST_CASE("Test Shorest Path V5 E12", "[shortest-path]") {
 }
 
 TEST_CASE("Test Shortest Path V10 E50", "[shortest-path]") {
+=======
+TEST_CASE("Test Graph Correctness") {
+    // TODO: Move test cases in main to here.
+}
+>>>>>>> ea970f46b6c8dff0910ac5a606e68aa779bf4cd5
 
+TEST_CASE("Test Shorest Path", "five-vertices") {
 }
 
 TEST_CASE("Test Shortest Path V15 E30", "[shortest-path]") {
@@ -109,5 +118,8 @@ TEST_CASE("Test Centrality", "[Centrality]") {
         REQUIRE(actualFreq == expectedFreq);
     }
     delete graph;
+<<<<<<< HEAD
      */
+=======
+>>>>>>> ea970f46b6c8dff0910ac5a606e68aa779bf4cd5
 }
