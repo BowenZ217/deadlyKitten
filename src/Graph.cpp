@@ -65,6 +65,10 @@ vector<Airport*> Graph::getNeighbors(int idx) {
     return neighbors;
 }
 
+bool Graph::isConnected(int s_idx, int d_idx) {
+    return flights_[s_idx].find(d_idx) != flights_[s_idx].end();
+}
+
 // helper functions
 long double Graph::_calcWeight(const Flight& flight) {
     // find airports using id
@@ -240,7 +244,7 @@ void Graph::buildFlightsClean(const std::string& routeFileName) {
                 continue;
             }
 
-            flights_[source->second->index_][destination->second->index_] = Flight(curr_data);
+            else flights_[source->second->index_][destination->second->index_] = Flight(curr_data);
         }
         catch (const std::exception& e) {
             // if meet error

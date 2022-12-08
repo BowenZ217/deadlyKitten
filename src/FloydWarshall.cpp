@@ -40,7 +40,9 @@ vector<int> FloydWarshall::getShortestPath(int source, int destination) {
  * 
  * @param graph Initial graph
  * @param dist data need to initialize
+ * @todo next_ is incorrect.
  */
+ 
 void FloydWarshall::initialise(const vector<vector<double>>& graph) {
     vector<vector<double>> dist = graph;
     next_ = vector<vector<int>>(size_, vector<int>(size_));

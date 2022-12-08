@@ -92,6 +92,8 @@ class Graph {
          * @return neighbors
          */
         vector<Airport*> getNeighbors(int idx);
+
+        bool isConnected(int s_idx, int d_idx);
         
         // helper functions
         /**

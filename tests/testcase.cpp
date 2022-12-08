@@ -33,12 +33,21 @@ bool compareVector(const vector<vector<string>>& actual, const vector<vector<str
 
 bool compareVector(const vector<string>& actual, const vector<string>& vec) {
     unsigned size_ = actual.size();
-
+    if (actual.size() != vec.size()) return false;
     for (unsigned i = 0; i < size_; ++i) {
         if (actual.at(i) != vec.at(i)) return false;
     }
 
     return true;
+}
+
+void printVector(const vector<string>& vec) {
+    cout << "\n\n---------------\n\n";
+    for (const auto& curr : vec) {
+        cout << curr << " , ";
+    }
+    cout << "[end]\n";
+    cout << "\n\n---------------\n\n";
 }
 
 TEST_CASE("Test datToVector", "[utils]") {
@@ -57,7 +66,6 @@ TEST_CASE("Test datToVector", "[utils]") {
     REQUIRE(compareVector(actual, result, 5));
 }
 
-<<<<<<< HEAD
 TEST_CASE("Test Shorest Path V5 E12", "[shortest-path]") {
     string airportFileName = "../test_data/V5E12_vertex.csv";
     string routeFileName = "../test_data/V5E12_edge.csv";
@@ -67,26 +75,39 @@ TEST_CASE("Test Shorest Path V5 E12", "[shortest-path]") {
     vector<vector<string>> shortest_path = fileToVector(shortestPathFileName);
     cout << "shortest_path size = " << shortest_path.size() << endl;
     Graph g(airportFileName, routeFileName);
+    if (g.isConnected(0, 1)) {
+        cout << "exist" << endl;
+    } else {
+        cout << "0 -> 1 not exist" << endl;
+    }
     vector<string> path;
 
     // checking
     for (const auto& curr_p : shortest_path) {
-        cout << "curr_p size = " << curr_p.size() << endl;
+        // cout << "curr_p size = " << curr_p.size() << endl;
         path = g.getShortestPath(curr_p[0], curr_p[curr_p.size() - 1]);
-        cout << " start checking" << endl;
-        compareVector(curr_p, path);
-        cout << " end checking" << endl;
+        // cout << " start checking" << endl;
+        printVector(curr_p);
+        printVector(path);
+        REQUIRE(compareVector(curr_p, path));
+        // cout << " end checking" << endl;
     }
 }
 
 TEST_CASE("Test Shortest Path V10 E50", "[shortest-path]") {
-=======
-TEST_CASE("Test Graph Correctness") {
-    // TODO: Move test cases in main to here.
-}
->>>>>>> ea970f46b6c8dff0910ac5a606e68aa779bf4cd5
+    string airportFileName = "../test_data/V10E50_vertex.csv";
+    string routeFileName = "../test_data/V10E50_edge.csv";
+    string shortestPathFileName = "../test_data/V10E50_shortest_path.csv";
 
-TEST_CASE("Test Shorest Path", "five-vertices") {
+    // init
+    vector<vector<string>> shortest_path = fileToVector(shortestPathFileName);
+    Graph g(airportFileName, routeFileName);
+    vector<string> path;
+
+    for (const auto& curr_p: shortest_path) {
+        path = g.getShortestPath(curr_p[0], curr_p[curr_p.size() - 1]);
+        compareVector(curr_p, path);
+    }
 }
 
 TEST_CASE("Test Shortest Path V15 E30", "[shortest-path]") {
@@ -118,8 +139,5 @@ TEST_CASE("Test Centrality", "[Centrality]") {
         REQUIRE(actualFreq == expectedFreq);
     }
     delete graph;
-<<<<<<< HEAD
      */
-=======
->>>>>>> ea970f46b6c8dff0910ac5a606e68aa779bf4cd5
 }
