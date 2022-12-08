@@ -3,11 +3,13 @@
 #include "utils.h"
 #include "Graph.h"
 #include "Centrality.h"
+#include "Dijkstra.h"
 
 #include <iostream>
 #include <string>
 #include <vector>
-
+#include <fstream>
+#include <sstream>
 
 using std::cout;
 using std::endl;
@@ -45,8 +47,11 @@ TEST_CASE("Test datToVector", "[utils]") {
     REQUIRE(compareVector(actual, result, 5));
 }
 
-TEST_CASE("Test Shorest Path", "five-vertices") {
+TEST_CASE("Test Graph Correctness") {
+    // TODO: Move test cases in main to here.
+}
 
+TEST_CASE("Test Shorest Path", "five-vertices") {
 }
 
 TEST_CASE("Test Shortest Path", "ten-vertices") {
@@ -76,4 +81,5 @@ TEST_CASE("Test Centrality", "small graph") {
 
         REQUIRE(actualFreq == expectedFreq);
     }
+    delete graph;
 }
