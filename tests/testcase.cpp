@@ -75,38 +75,46 @@ TEST_CASE("Test Shorest Path V5 E12", "[shortest-path]") {
     vector<vector<string>> shortest_path = fileToVector(shortestPathFileName);
     cout << "shortest_path size = " << shortest_path.size() << endl;
     Graph g(airportFileName, routeFileName);
-    if (g.isConnected(0, 1)) {
-        cout << "exist" << endl;
-    } else {
-        cout << "0 -> 1 not exist" << endl;
-    }
     vector<string> path;
 
     // checking
     for (const auto& curr_p : shortest_path) {
-        // cout << "curr_p size = " << curr_p.size() << endl;
         path = g.getShortestPath(curr_p[0], curr_p[curr_p.size() - 1]);
-        // cout << " start checking" << endl;
-        printVector(curr_p);
-        printVector(path);
         REQUIRE(compareVector(curr_p, path));
-        // cout << " end checking" << endl;
     }
 }
 
-TEST_CASE("Test Shortest Path V10 E50", "[shortest-path]") {
-    string airportFileName = "../test_data/V10E50_vertex.csv";
-    string routeFileName = "../test_data/V10E50_edge.csv";
-    string shortestPathFileName = "../test_data/V10E50_shortest_path.csv";
+TEST_CASE("Test Shortest Path V10 E30", "[shortest-path]") {
+    string airportFileName = "../test_data/V10E30_vertex.csv";
+    string routeFileName = "../test_data/V10E30_edge.csv";
+    string shortestPathFileName = "../test_data/V10E30_shortest_path.csv";
 
     // init
     vector<vector<string>> shortest_path = fileToVector(shortestPathFileName);
     Graph g(airportFileName, routeFileName);
     vector<string> path;
 
+    // checking
     for (const auto& curr_p: shortest_path) {
         path = g.getShortestPath(curr_p[0], curr_p[curr_p.size() - 1]);
-        compareVector(curr_p, path);
+        REQUIRE(compareVector(curr_p, path));
+    }
+}
+
+TEST_CASE("Test Shortest Path V15 E50", "[shortest-path]") {
+    string airportFileName = "../test_data/V15E50_vertex.csv";
+    string routeFileName = "../test_data/V15E50_edge.csv";
+    string shortestPathFileName = "../test_data/V15E50_shortest_path.csv";
+
+    // init
+    vector<vector<string>> shortest_path = fileToVector(shortestPathFileName);
+    Graph g(airportFileName, routeFileName);
+    vector<string> path;
+
+    // checking
+    for (const auto& curr_p: shortest_path) {
+        path = g.getShortestPath(curr_p[0], curr_p[curr_p.size() - 1]);
+        REQUIRE(compareVector(curr_p, path));
     }
 }
 
