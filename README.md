@@ -25,11 +25,11 @@ In addition, we have another sub dataset “airport.dat”, which contains the l
 
 Based on the shortest paths, we further want to calculate the betweenness centrality to measure the importance of airports over the world.
 
-## Presentation Video Link
+## Presentation Video
 TBD
 
 ## Written Report
-TBD
+[Report](https://github.com/BowenZ217/deadlyKittenAirline/blob/main/report.md)
 
 ## Running Instruction
 ### check out the code
@@ -66,7 +66,6 @@ in the terminal
 
 #### output
 results will export automatically in terminal window or you can open the **output** folder which is located in your root folder.
-    (example:)
 
 output_given.txt
 
