@@ -49,10 +49,22 @@ class Dijkstra {
          * 
          * @return index of airports need to go through (in order)
          */
-        
-        void ShortestPath(int source);
         vector<int> getShortestPath(int destination);
+
+        /**
+         * @brief get a vector, contains shortest distance to every airport
+         * 
+         * @return shortest distance to every airport
+         */
         vector<double> getShortestDistance();
+
+        /**
+         * @brief get a vector, contains shortest distance to `destination`
+         * 
+         * @param destination the destination
+         * 
+         * @return shortest distance to `destination`
+         */
         double getShortestDistance(int destination);
     private:
         // Define infinite
@@ -66,10 +78,8 @@ class Dijkstra {
         vector<double> dist_;
         vector<vector<double>> graph_;
         vector<vector<std::pair<int, double>>> adjAirport;
-        
-
 
         // helper function
-        void initialise(const vector<vector<double>>& graph, int source);
+        void initialise();
 };
 

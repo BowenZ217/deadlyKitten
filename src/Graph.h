@@ -54,6 +54,16 @@ class Graph {
         vector<string> getShortestPath(const string& source, const string& destination);
 
         /**
+         * @brief Find the Shortest Path from `source` to `destination`, using Djikstras
+         * 
+         * @param source name of source airpot
+         * @param destination name of destination airpot
+         * 
+         * @return name of airports need to go through (in order)
+         */
+        vector<string> getDjikstrasShortestPath(const string& source, const string& destination);
+
+        /**
          * @brief Find the Shortest Path pass through all airports
          * 
          * @param airports Name of airports to pass through
@@ -142,12 +152,13 @@ class Graph {
         vector<unordered_map<int, Flight>> flights_;
 
         FloydWarshall floyd_warshall_;
-        Dijkstra dijkstra;
+        Dijkstra dijkstra_;
 
         void buildAirpotsClean(const std::string& airportFileName);
         void buildFlightsClean(const std::string& routeFileName);
         void buildAirpots(const std::string& airportFileName);
         void buildFlights(const std::string& routeFileName);
-        void buildFloydWarshall();
-        
+        void buildFindShortest();
+        void buildFloydWarshall(const vector<vector<double>>& graph);
+        void buildDijkstra(const vector<vector<double>>& graph);        
 };

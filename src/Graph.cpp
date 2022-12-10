@@ -7,13 +7,13 @@ Graph::Graph() {
 Graph::Graph(const string& airportFileName, const string& routeFileName) {
     buildAirpotsClean(airportFileName);
     buildFlightsClean(routeFileName);
-    buildFloydWarshall();
+    buildFindShortest();
 }
 
 Graph::Graph(const string& airportFileName, const string& routeFileName, const string& airlineFileName) {
     buildAirpots(airportFileName);
     buildFlights(routeFileName);
-    buildFloydWarshall();
+    buildFindShortest();
     
 }
 
@@ -27,6 +27,26 @@ vector<string> Graph::getShortestPath(const string& source, const string& destin
     }
 
     vector<int> path_idx = floyd_warshall_.getShortestPath(airpots_[source].index_, airpots_[destination].index_);
+
+    // transfor from airport index to name
+    for (const int& idx : path_idx) {
+        path.push_back(index_to_airpot_[idx]->name_);
+    }
+
+    return path;
+}
+
+vector<string> Graph::getDjikstrasShortestPath(const string& source, const string& destination) {
+    vector<string> path;
+    
+    // check if exist
+    if (airpots_.find(source) == airpots_.end() || airpots_.find(destination) == airpots_.end()) {
+        cout << "one of airport not exist." << endl;
+        return path;
+    }
+
+    dijkstra_.setSource(airpots_[source].index_);
+    vector<int> path_idx = dijkstra_.getShortestPath(airpots_[destination].index_);
 
     // transfor from airport index to name
     for (const int& idx : path_idx) {
@@ -254,10 +274,10 @@ void Graph::buildFlightsClean(const std::string& routeFileName) {
 }
 
 /**
- * @brief helper function to build the `floyd_warshall_`, for find shortest path between two airpots
+ * @brief helper function to build the `floyd_warshall_` and `dijkstra_`, for find shortest path between two airpots
  * 
  */
-void Graph::buildFloydWarshall() {
+void Graph::buildFindShortest() {
     // init
     vector<vector<double>> weight = vector<vector<double>>(size_, vector<double>(size_, INF));
 
@@ -269,21 +289,25 @@ void Graph::buildFloydWarshall() {
     }
 
     // and setup
-    floyd_warshall_ = FloydWarshall(size_, weight);
+    buildFloydWarshall(weight);
+    buildDijkstra(weight);     
+}
+
+/**
+ * @brief helper function to build the `floyd_warshall_`, for find shortest path between two airpots
+ * 
+ * @param graph weight information
+ */
+void Graph::buildFloydWarshall(const vector<vector<double>>& graph) {
+    floyd_warshall_ = FloydWarshall(size_, graph);
     
 }
 
-/*void Graph::buildDijkstra(){
-    vector<vector<double>> weight = vector<vector<double>>(size_, vector<double>(size_, INF));
-    int source = 0;
-    // calc the weight
-    for (size_t source_id = 0; source_id < size_; ++source_id) {
-        for (const auto& curr_p : flights_[source_id]) {
-            weight[source_id][curr_p.first] = _calcWeight(curr_p.second);
-        }
-        //store source index
-        //source.push_back((int)source_id);
-    }
-    // and setup
-    dijkstra = Dijkstra(size_, weight,source);
-}*/
+/**
+ * @brief helper function to build the `dijkstra_`, for find shortest path between two airpots
+ * 
+ * @param graph weight information
+ */
+void Graph::buildDijkstra(const vector<vector<double>>& graph){
+    dijkstra_ = Dijkstra(size_, graph, 0);
+}
