@@ -23,6 +23,20 @@ void printVector(const vector<string>& vec) {
     }
     cout << "[end] ]\n";
 }
+void printVector(const vector<int>& vec) {
+    cout << "[ ";
+    for (const auto& curr : vec) {
+        cout << curr << " , ";
+    }
+    cout << "[end] ]\n";
+}
+void printMap(const std::unordered_map<std::string, int>& m) {
+    cout << "[ ";
+    for (const auto& curr : m) {
+        cout << "\"" << curr.first << "\" : \"" << curr.second << "\" , ";
+    }
+    cout << "[end] ]\n";
+}
 
 bool compareVector(const vector<vector<string>>& actual, const vector<vector<string>>& vec, unsigned size) {
     unsigned actual_size = actual.size();
@@ -182,7 +196,53 @@ TEST_CASE("Test Dijkstra Shortest Path V15 E50", "[shortest-path]") {
     }
 }
 
-TEST_CASE("Test Centrality", "[Centrality]") {
+TEST_CASE("Test Centrality V5E12", "[Centrality]") {
+    // Use graph V5E12 to test centrality
+    string airportFileName = "../test_data/V5E12_vertex.csv";
+    string routeFileName = "../test_data/V5E12_edge.csv";
+
+    Graph g(airportFileName, routeFileName);
+    Centrality centrality(&g);
+
+    // This is a vector of expected frequency for the test graph
+    std::vector<int> expected = {10, 10, 8, 12, 8};
+
+    centrality.calculate_centrality();
+
+    for (unsigned i = 0; i < expected.size(); i++) {
+        std::string airportName = centrality.graph_->getAirport(i)->name_;
+
+        int expectedFreq = expected[i];
+        int actualFreq = centrality.frequency_[airportName];
+
+        REQUIRE(actualFreq == expectedFreq);
+    }
+}
+
+TEST_CASE("Test Centrality V10E30", "[Centrality]") {
+    // Use graph V10E30 to test centrality
+    string airportFileName = "../test_data/V10E30_vertex.csv";
+    string routeFileName = "../test_data/V10E30_edge.csv";
+
+    Graph g(airportFileName, routeFileName);
+    Centrality centrality(&g);
+
+    // This is a vector of expected frequency for the test graph
+    std::vector<int> expected = {27, 57, 18, 18, 18, 47, 18, 20, 31, 20};
+
+    centrality.calculate_centrality();
+
+    for (unsigned i = 0; i < expected.size(); i++) {
+        std::string airportName = centrality.graph_->getAirport(i)->name_;
+
+        int expectedFreq = expected[i];
+        int actualFreq = centrality.frequency_[airportName];
+
+        REQUIRE(actualFreq == expectedFreq);
+    }
+}
+
+TEST_CASE("Test Centrality V15E50", "[Centrality]") {
     // Use graph V15E50 to test centrality
     string airportFileName = "../test_data/V15E50_vertex.csv";
     string routeFileName = "../test_data/V15E50_edge.csv";
@@ -192,7 +252,7 @@ TEST_CASE("Test Centrality", "[Centrality]") {
     Centrality centrality(&g);
     // This is a vector of expected frequency for the test graph
     // We might use networkx to calculate?
-    std::vector<int> expected = {6, 4, 3, 3, 1};
+    std::vector<int> expected = {50, 53, 47, 37, 38, 61, 35, 34, 45, 53, 30, 34, 36, 48, 73};
 
     centrality.calculate_centrality();
 
@@ -206,4 +266,5 @@ TEST_CASE("Test Centrality", "[Centrality]") {
 
         REQUIRE(actualFreq == expectedFreq);
     }
+    cout << endl;
 }

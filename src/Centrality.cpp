@@ -17,8 +17,9 @@ Centrality::Centrality(Graph* graph) {
 
 std::vector<std::vector<int>> Centrality::generate_combination() {
     std::vector<std::vector<int>> combinations;
-    for (int i = 0; i < graph_->getSize() - 1; i++) {
-        for (int j = i + 1; j < graph_->getSize(); j++) {
+    for (int i = 0; i < graph_->getSize(); i++) {
+        for (int j = 0; j < graph_->getSize(); j++) {
+            if (i == j) continue;
             std::vector<int> temp;
             temp.push_back(i);
             temp.push_back(j);
