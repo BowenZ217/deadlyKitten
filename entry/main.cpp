@@ -1,10 +1,13 @@
 #include <iostream>
 #include <string>
+#include <map>
+#include <algorithm>
 #include "cs225/PNG.h"
 
 #include "Airport.h"
 #include "Graph.h"
 #include "graphTraversal/BFS.h"
+#include "Centrality.h"
 #include "utils.h"
 
 using namespace std;
@@ -13,10 +16,11 @@ void example1();
 void example2();
 void example3();
 void example4();
+void example5();
 
 int main()
 {
-    example2();
+    example5();
     return 0;
 }
 
@@ -151,5 +155,30 @@ void example4() {
     for (auto curr : bfs) {
         // curr is a pointer of airport
         cout << "current airport : " << curr->name_ << " , idx = " << curr->index_ << endl;
+    }
+}
+
+void example5() {
+    string airportFileName = "../data/airports.dat";
+    string routeFileName = "../data/routes.dat";
+    string airlineFileName = "../data/airlines.dat";
+
+    Graph g(airportFileName, routeFileName, airlineFileName);
+    
+    Centrality centrality(&g);
+
+    centrality.calculate_centrality();
+
+    vector<pair<string, int>> sorted_freq;
+    for (const auto& curr : centrality.frequency_) {
+        sorted_freq.push_back(make_pair(curr.first, curr.second));
+    }
+    sort(sorted_freq.begin(), sorted_freq.end(), 
+        [](const auto& a, const auto& b) {
+            return a.second > b.second;
+        });
+
+    for (int i = 0; i < 10; ++i) {
+        cout << i << " : " << sorted_freq[i].first << " , " << sorted_freq[i].second << endl;
     }
 }
