@@ -42,10 +42,21 @@ make
 ```
 in the terminal.
 
-### input
-Open **input.txt**
-1. given start & destination: input airport name, use comma to split (example: Goroka Airport,Thule Air Base)
-2. require centrality: input true
+### Functions
+1. input departure and destination for searching shortest path
+
+    Open **input.txt**
+    
+    given start & destination: input airport name, use comma to split (example: Goroka Airport,Thule Air Base)
+
+2. find the shortest path among major airports (greedy algorithm)
+
+    do nothing: default function    
+
+3. find the optimal shortest path among major airports (genetic algorithem)
+
+    do nothing: default function    
+
 
 ### to run code, you need to run:
  ```main
@@ -53,17 +64,54 @@ Open **input.txt**
 ```
 in the terminal
 
-### output
-results will export automatically in terminal window or you can open the **output.txt** file which is located in your root folder.
+#### output
+results will export automatically in terminal window or you can open the **output** folder which is located in your root folder.
     (example:)
 
+output_given.txt
+
+output_greedy.txt
+
+output_genetic.txt
+
+## Testing Instruction
 ### to test code, you need to run:
  ```test
 ./test
 ```
 in the terminal
 
-test results will export automatically in terminal window or you can open the **output.txt** file which is located in your test folder.
+
+
+### Test Case List
+
+* File io stream
+
+    TEST_CASE("Test datToVector", "[utils]")
+
+* graph shortest path calculate in graphs with different complexity
+
+    TEST_CASE("Test FW Shorest Path V5 E12", "[shortest-path]") 
+
+    TEST_CASE("Test FW Shortest Path V10 E30", "[shortest-path]") 
+
+    TEST_CASE("Test FW Shortest Path V15 E50", "[shortest-path]") 
+
+    TEST_CASE("Test Dijkstra Shorest Path V5 E12", "[shortest-path]") 
+
+    TEST_CASE("Test Dijkstra Shortest Path V10 E30", "[shortest-path]") 
+
+    TEST_CASE("Test Dijkstra Shortest Path V15 E50", "[shortest-path]") 
+
+* centrality in graphs with different complexity
+    
+    TEST_CASE("Test Centrality V5E12", "[Centrality]") 
+
+    TEST_CASE("Test Centrality V10E30", "[Centrality]") 
+
+    TEST_CASE("Test Centrality V15E50", "[Centrality]") 
+
+
 
 ## File List
 ### Graph constructor
@@ -109,14 +157,7 @@ create a DFS object to traversal the graph.
     If an airport is passed by shortest path with high frequency, it is an important transit point in the whole graph.
     calculating the frequency by using the matrix generated in FloydWarshall, we can know the significance of each airports.
 
-## Test Case
 
-all expected output csv files are in the test folder.
-* File io
-TEST_CASE("Test datToVector", "[utils]")
-* graph traversal test
-* graph shortest path calculate
-* centrality
 
 
 
