@@ -192,7 +192,7 @@ TEST_CASE("Test Centrality", "[Centrality]") {
     Centrality centrality(&g);
     // This is a vector of expected frequency for the test graph
     // We might use networkx to calculate?
-    std::vector<int> expected ={6, 4, 3, 3, 1};
+    std::vector<int> expected = {6, 4, 3, 3, 1};
 
     centrality.calculate_centrality();
 
@@ -206,5 +206,4 @@ TEST_CASE("Test Centrality", "[Centrality]") {
 
         REQUIRE(actualFreq == expectedFreq);
     }
-
 }

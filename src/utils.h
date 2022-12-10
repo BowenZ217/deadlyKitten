@@ -101,6 +101,6 @@ long double degreeToRadians(const long double& degree);
  * @param latitude_2 latitude of second point
  * @param longitude_2 longitude of second point
  * 
- * @return distance
+ * @return distance in km
  */
 long double calcDistance_2(long double latitude_1, long double longitude_1, long double latitude_2, long double longitude_2);

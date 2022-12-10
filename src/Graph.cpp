@@ -90,6 +90,22 @@ bool Graph::isConnected(int s_idx, int d_idx) {
 }
 
 // helper functions
+long double Graph::calcRealDistance(const vector<string>& path) const {
+    // init
+    int path_num = path.size() - 1;
+    long double distance = 0;
+
+    // calculate
+    for (int i = 0; i < path_num; ++i) {
+        const Airport& source = airpots_.at(path.at(i));
+        const Airport& destination = airpots_.at(path.at(i + 1));
+
+        distance += calcDistance_2(source.latitude_, source.longitude_, destination.latitude_, destination.longitude_);
+    }
+
+    return distance;
+}
+
 long double Graph::_calcWeight(const Flight& flight) {
     // find airports using id
     Airport* source = id_to_airpot_[flight.getSourceId()];

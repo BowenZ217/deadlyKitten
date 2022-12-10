@@ -107,6 +107,14 @@ class Graph {
         
         // helper functions
         /**
+         * @brief calculate the real distance in km, with the given path
+         * 
+         * @param path path it take
+         * @return distance in km
+         */
+        long double calcRealDistance(const vector<string>& path) const;
+
+        /**
          * @brief Calculate the weights between two airpots
          *
          * @param flight current flight
