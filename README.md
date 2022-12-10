@@ -88,7 +88,7 @@ in the terminal
 
     TEST_CASE("Test datToVector", "[utils]")
 
-* graph shortest path calculate in graphs with different complexity
+* Graph shortest path calculate in graphs with different complexity
 
     TEST_CASE("Test FW Shorest Path V5 E12", "[shortest-path]") 
 
@@ -102,7 +102,7 @@ in the terminal
 
     TEST_CASE("Test Dijkstra Shortest Path V15 E50", "[shortest-path]") 
 
-* centrality in graphs with different complexity
+* Centrality in graphs with different complexity
     
     TEST_CASE("Test Centrality V5E12", "[Centrality]") 
 
@@ -154,6 +154,15 @@ create a BFS object to traversal the graph.
     If an airport is passed by shortest path with high frequency, it is an important transit point in the whole graph.
     calculating the frequency by using the matrix generated in FloydWarshall, we can know the significance of each airports.
 
+### Test
+* [test_data](https://github.com/BowenZ217/deadlyKittenAirline/tree/main/test_data)
+
+    The information of test examples
+    we generate 3 graphs with different complexity randomly and their shortest path solutions by [test.ipynd](https://github.com/BowenZ217/deadlyKittenAirline/blob/main/test.ipynb). 
+
+* [tests](https://github.com/BowenZ217/deadlyKittenAirline/tree/main/tests)
+
+    Test cases for io stream, FloydWarshall's algorithm, Dijkstra's algorithm, and centrality calculator.
 
 
 
