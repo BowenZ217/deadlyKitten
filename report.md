@@ -1,3 +1,5 @@
+[toc]
+
 # Algorithm Summary
 
 ## Floyd-Warshall
@@ -34,10 +36,30 @@ This test case is testing the `filteToVector` function which will be used later 
 
 ## Shortest Path Test
 
-### Test Genration
+### Test Generation
 
 To ensure the shortest path algorithm is correct. We wrote a python sricpt to generate random graphs with different numbers of vertices and edges. It then calculates the shortest path between all pairs of vertices by the Dijkstra algorithm using package networkx and saves the results in an output file.
 
 ### Details
 
 `[shortest-path]` test cases are testing the `getShortestPath` method of the `Graph` class, which returns the shortest path between two vertices in a graph. It compares the output to the correct answers stored in files by `compareVector` function.
+
+
+
+##  Centrality
+
+### Test Generation
+
+The graphs used to test centrality are also generaged from a python script. Then we calculates the shortest path of all pairs of vertices uisng package networks and count the frequency of each vertex. Those frequencies are used as the correct answer to test our implementation.
+
+### Details
+
+`Centrality` test cases are testing the `calculate_centrality` method of `Centrality` class, which calculates the frequencies of vertices appear in the shortest paths of all combination of source and destination. It iterates over the expected frequency vector, retrieves the actual frequency for each airport in the graph, and checks that the actual frequency calculated matches the expected frequency.
+
+
+
+# Answering the Leading Questions
+
+In our project we determined the shortest paths between various airports using shortest paths found by Dijkstras algorithm and Floyd-Warshall algorithm. These shortest paths provide the airline with a set of efficient routes that it can use to connect different airports. Using these shortest routes, we were able to calculate the betweenness centrality of each airport in the network. This allowed us to measure the importance of each airport in the graph, and identify which airports to invest our routes. 
+
+The problem we proposed is a typical traveling salesman problem, where we are given a list of cities and the distances between each pair of cities. The goal is to find the shortest possible route that visits each city exactly once and returns to the origin city. However, the algorithm we implemented only works for one source and destination city. Thus, we decided to combine the greedy algorithm with the shortest path algorithm to solve the problem. We selected ten of the most central airports in the world and started from the most central airport. We then found the shortest path between the remaining nine airports and let the first destination be the one that has the minimum shortest path to the starting point. We repeated this process, only finding the local optimal solution at each iteration, until we finished the traveling.
