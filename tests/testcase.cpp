@@ -123,13 +123,13 @@ TEST_CASE("Test Shortest Path V15 E30", "[shortest-path]") {
 }
 
 TEST_CASE("Test Centrality", "[Centrality]") {
-    /*
-    string airportFileName = "../data/airports.dat";
-    string routeFileName = "../data/routes.dat";
-    string airlineFileName = "../data/airlines.dat";
+    // Use graph V15E50 to test centrality
+    string airportFileName = "../test_data/V15E50_vertex.csv";
+    string routeFileName = "../test_data/V15E50_edge.csv";
+    string shortestPathFileName = "../test_data/V15E50_shortest_path.csv";
 
-    Graph* graph = new Graph(airportFileName, routeFileName, airlineFileName);
-    Centrality centrality(graph);
+    Graph g(airportFileName, routeFileName);
+    Centrality centrality(&g);
     // This is a vector of expected frequency for the test graph
     // We might use networkx to calculate?
     std::vector<int> expected ={6, 4, 3, 3, 1};
@@ -146,6 +146,5 @@ TEST_CASE("Test Centrality", "[Centrality]") {
 
         REQUIRE(actualFreq == expectedFreq);
     }
-    delete graph;
-     */
+
 }

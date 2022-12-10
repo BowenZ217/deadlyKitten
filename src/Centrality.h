@@ -6,6 +6,12 @@ class Centrality
 {
     public:
         /**
+         * Key represents the index of cities. Value represents the number of times a city has been 
+         * visited in shortest paths. The central vertices have the highest frequencies.
+        */ 
+        Graph* graph_;
+        std::unordered_map<std::string, int> frequency_;
+        /**
          * The default constructor of Centrality.
         */
         Centrality();
@@ -35,11 +41,8 @@ class Centrality
    
 
     private:
-        Graph* graph_;
-        /**
-         * Key represents the index of cities. Value represents the number of times a city has been 
-         * visited in shortest paths. The central vertices have the highest frequencies.
-        */ 
-        std::unordered_map<std::string, int> frequency_;
+        
+
+        
         std::vector<std::vector<int>> combinations_;
 };
