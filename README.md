@@ -134,8 +134,6 @@ in the terminal
 * [BFS.h](https://github.com/BowenZ217/deadlyKittenAirline/blob/main/src/graphTraversal/BFS.h) & [BFS.cpp](https://github.com/BowenZ217/deadlyKittenAirline/blob/main/src/graphTraversal/BFS.cpp)
 create a BFS object to traversal the graph. 
 
-* DFS.h & cpp (unfinished)
-create a DFS object to traversal the graph. 
 
 ### FloydWarshall Implementation
 * [FloydWarshall.h](https://github.com/BowenZ217/deadlyKittenAirline/blob/main/src/FloydWarshall.h)
