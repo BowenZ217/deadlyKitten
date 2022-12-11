@@ -8,8 +8,10 @@
 #include <sstream>
 #include <bits/stdc++.h>    /* M_PI */
 #include <iostream>
+#include <unordered_map>
 
 using std::vector;
+using std::unordered_map;
 using std::ifstream;
 using std::ofstream;
 using std::string;
@@ -57,11 +59,33 @@ vector<vector<int>> fileToIntVector(const string& fileName, unsigned size);
 void vectorToFile(const string& fileName, const vector<vector<int>>& data);
 
 /**
+ * @brief Transform the data the file to a map
+ * 
+ * @param fileName Name of the file to be read from.
+ */
+unordered_map<string, string> fileToMap(const string& fileName);
+
+/**
+ * @brief transfor string to a vector of string, split by comma
+ * 
+ */
+vector<string> stringToVector(const string& data);
+
+/**
  * @brief read each line from terminal, input `e` to stop
  * 
  * @return vector of string for each line
  */
 vector<string> readInput();
+
+
+/**
+ * @brief write data to file
+ * 
+ * @param fileName Name of the file to write
+ * @param data data to write
+ */
+void writeData(const string& fileName, const string& data);
 
 /**
  * @brief remove leading and trailing spaces from a string
@@ -104,3 +128,33 @@ long double degreeToRadians(const long double& degree);
  * @return distance in km
  */
 long double calcDistance_2(long double latitude_1, long double longitude_1, long double latitude_2, long double longitude_2);
+
+/**
+ * @brief print string vector
+ * 
+ */
+void printVector(const vector<string>& vec);
+
+/**
+ * @brief print int vector
+ * 
+ */
+void printVector(const vector<int>& vec);
+
+/**
+ * @brief print 2d int vector
+ * 
+ */
+void printVector(const vector<vector<int>>& vec);
+
+/**
+ * @brief print <string, int> map
+ * 
+ */
+void printMap(const unordered_map<string, int>& m);
+
+/**
+ * @brief print <string, string> map
+ * 
+ */
+void printMap(const unordered_map<string, string>& m);

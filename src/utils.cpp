@@ -159,6 +159,60 @@ void vectorToFile(const string& fileName, const vector<vector<int>>& data) {
     }
 }
 
+unordered_map<string, string> fileToMap(const string& fileName) {
+    // init
+    unordered_map<string, string> data;
+    ifstream dataFile(fileName);
+    string currLine;
+
+    // check if meet problem with opening the file
+    if (!dataFile.is_open())
+        return data;
+
+    // function to check if a char is not needed
+    auto is_new_line = [](auto ch) { return (ch == '\n' || ch == '\r' || ch == '\"'); };
+    
+    // start to fill in data
+    while (getline(dataFile, currLine)) {
+        vector<string> temp;
+
+        // start to split current line by comma
+        stringstream s_stream(currLine);
+
+        while(s_stream.good()) {
+            string substr;
+            // get first string delimited by colon
+            getline(s_stream, substr, ':');
+
+            // Remove newline character from string
+            substr.erase(std::remove_if(substr.begin(), substr.end(), is_new_line), substr.end());
+            temp.push_back(trim(substr));
+        }
+
+        if (temp.size() != 2) continue;
+
+        data[temp[0]] = temp[1];
+    }
+
+    return data;
+}
+
+vector<string> stringToVector(const string& data) {
+    vector<string> result;
+    // start to split current line by comma
+    stringstream s_stream(data);
+
+    while(s_stream.good()) {
+        string substr;
+        // get string delimited by comma
+        getline(s_stream, substr, ',');
+
+        result.push_back(trim(substr));
+    }
+
+    return result;
+}
+
 vector<string> readInput() {
     // init
     vector<string> data;
@@ -176,6 +230,12 @@ vector<string> readInput() {
     data.pop_back();
 
     return data;
+}
+
+void writeData(const string& fileName, const string& data) {
+    ofstream dataFile(fileName);
+    dataFile << data;
+    dataFile.close();
 }
 
 string trim(const string& s) {
@@ -227,4 +287,44 @@ long double calcDistance_2(long double latitude_1, long double longitude_1, long
     ans = ans * R;
 
     return ans;
+}
+
+void printVector(const vector<string>& vec) {
+    cout << "[ ";
+    for (const auto& curr : vec) {
+        cout << curr << " , ";
+    }
+    cout << "[end] ]\n";
+}
+
+void printVector(const vector<int>& vec) {
+    cout << "[ ";
+    for (const auto& curr : vec) {
+        cout << curr << " , ";
+    }
+    cout << "[end] ]\n";
+}
+
+void printVector(const vector<vector<int>>& vec) {
+    cout << "[ ";
+    for (const auto& curr : vec) {
+        printVector(curr);
+    }
+    cout << "[end] ]\n";
+}
+
+void printMap(const unordered_map<string, int>& m) {
+    cout << "[ ";
+    for (const auto& curr : m) {
+        cout << "\"" << curr.first << "\" : \"" << curr.second << "\" , ";
+    }
+    cout << "[end] ]\n";
+}
+
+void printMap(const unordered_map<string, string>& m) {
+    cout << "[ ";
+    for (const auto& curr : m) {
+        cout << "\"" << curr.first << "\" : \"" << curr.second << "\" , \n";
+    }
+    cout << "[end] ]\n";
 }

@@ -1,21 +1,27 @@
-0 : King Abdulaziz International Airport , 601493
-1 : Singapore Changi Airport , 574130
-2 : Indira Gandhi International Airport , 514757
-3 : Ted Stevens Anchorage International Airport , 503002
-4 : Atatürk International Airport , 497383
-5 : Minneapolis-St Paul International/Wold-Chamberlain Airport , 488507
-6 : Adolfo Suárez Madrid–Barajas Airport , 447504
-7 : Jomo Kenyatta International Airport , 442947
-8 : Lester B. Pearson International Airport , 424741
-9 : Guarulhos - Governador André Franco Montoro International Airport , 421078
+shortest path (Floyd Warshall) from "Goroka Airport" to "Gerardo Tobar López Airport":
+Goroka Airport -> Port Moresby Jacksons International Airport -> Singapore Changi Airport -> King Abdulaziz International Airport -> Mohammed V International Airport -> Tenerife Norte Airport -> Simón Bolívar International Airport 8 -> El Dorado International Airport -> Gerardo Tobar López Airport -> [end]
 
----------------------------
+----------------------------------------
 
-shortest path to connect them (inorder):
-    [   Ted Stevens Anchorage International Airport , Minneapolis-St Paul International/Wold-Chamberlain Airport , 
-        Miami International Airport , Guarulhos - Governador André Franco Montoro International Airport , 
-        Quatro de Fevereiro Airport , Jomo Kenyatta International Airport , Seychelles International Airport , 
-        Bandaranaike International Colombo Airport , Singapore Changi Airport , Indira Gandhi International Airport , 
-        King Abdulaziz International Airport , Atatürk International Airport , Adolfo Suárez Madrid–Barajas Airport , 
-        Francisco de Sá Carneiro Airport , Lester B. Pearson International Airport , 
-        Minneapolis-St Paul International/Wold-Chamberlain Airport , Ted Stevens Anchorage International Airport , [end] ]
+0 : King Abdulaziz International Airport , it's centrality : 601493
+1 : Singapore Changi Airport , it's centrality : 574130
+2 : Indira Gandhi International Airport , it's centrality : 514757
+3 : Ted Stevens Anchorage International Airport , it's centrality : 503002
+4 : Atatürk International Airport , it's centrality : 497383
+5 : Minneapolis-St Paul International/Wold-Chamberlain Airport , it's centrality : 488507
+6 : Adolfo Suárez Madrid–Barajas Airport , it's centrality : 447504
+7 : Jomo Kenyatta International Airport , it's centrality : 442947
+8 : Lester B. Pearson International Airport , it's centrality : 424741
+9 : Guarulhos - Governador André Franco Montoro International Airport , it's centrality : 421078
+
+shortest path to connect them (inorder): 
+Singapore Changi Airport -> Indira Gandhi International Airport -> King Abdulaziz International Airport -> Atatürk International Airport -> Adolfo Suárez Madrid–Barajas Airport -> Francisco de Sá Carneiro Airport -> Lester B. Pearson International Airport -> Minneapolis-St Paul International/Wold-Chamberlain Airport -> Ted Stevens Anchorage International Airport -> Minneapolis-St Paul International/Wold-Chamberlain Airport -> Miami International Airport -> Guarulhos - Governador André Franco Montoro International Airport -> Quatro de Fevereiro Airport -> Jomo Kenyatta International Airport -> Seychelles International Airport -> Bandaranaike International Colombo Airport -> Singapore Changi Airport -> [end]
+
+----------------------------------------
+
+Travelling Salesman Problem
+shortest path to connect these vertexes (inorder): 
+King Abdulaziz International Airport -> John F Kennedy International Airport -> Minneapolis-St Paul International/Wold-Chamberlain Airport -> Ted Stevens Anchorage International Airport -> Minneapolis-St Paul International/Wold-Chamberlain Airport -> Lester B. Pearson International Airport -> Atatürk International Airport -> Indira Gandhi International Airport -> Singapore Changi Airport -> King Abdulaziz International Airport -> [end]
+
+----------------------------------------
+

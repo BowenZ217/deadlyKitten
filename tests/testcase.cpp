@@ -17,29 +17,23 @@ using std::endl;
 using std::string;
 using std::vector;
 
-void printVector(const vector<string>& vec) {
-    cout << "[ ";
-    for (const auto& curr : vec) {
-        cout << curr << " , ";
+bool compareVector(const vector<vector<string>>& actual, const vector<vector<string>>& vec, unsigned size) {
+    unsigned actual_size = actual.size();
+
+    if (actual_size != vec.size()) return false;
+
+    for (unsigned i = 0; i < actual_size; ++i) {
+        if (actual.at(i).size() != size || vec.at(i).size() != size) return false;
+
+        for (unsigned j = 0; j < size; ++j) {
+            if (actual.at(i).at(j) != vec.at(i).at(j)) return false;
+        }
     }
-    cout << "[end] ]\n";
-}
-void printVector(const vector<int>& vec) {
-    cout << "[ ";
-    for (const auto& curr : vec) {
-        cout << curr << " , ";
-    }
-    cout << "[end] ]\n";
-}
-void printMap(const std::unordered_map<std::string, int>& m) {
-    cout << "[ ";
-    for (const auto& curr : m) {
-        cout << "\"" << curr.first << "\" : \"" << curr.second << "\" , ";
-    }
-    cout << "[end] ]\n";
+
+    return true;
 }
 
-bool compareVector(const vector<vector<string>>& actual, const vector<vector<string>>& vec, unsigned size) {
+bool compareVector(const vector<vector<int>>& actual, const vector<vector<int>>& vec, unsigned size) {
     unsigned actual_size = actual.size();
 
     if (actual_size != vec.size()) return false;
@@ -77,7 +71,7 @@ bool compareVector(const vector<int>& actual, const vector<int>& vec) {
 }
 
 TEST_CASE("Test datToVector", "[utils]") {
-    string file_name = "../tests/test_dat_to_vector.dat";
+    string file_name = "../test_data/test_dat_to_vector.dat";
 
     vector<vector<string>> actual
     {
@@ -90,6 +84,19 @@ TEST_CASE("Test datToVector", "[utils]") {
     vector<vector<string>> result = fileToVector(file_name, 5);
 
     REQUIRE(compareVector(actual, result, 5));
+}
+
+TEST_CASE("Test write file", "[utils]") {
+    vector<vector<int>> data
+        = { { 0, 3, -1, 7 },
+            { 8, 0, 2, -1 },
+            { 5, -1, 0, 1 },
+            { 2, -1, -1, 0 } };
+    vectorToFile("write_test.txt", data);
+
+    vector<vector<int>> read = fileToIntVector("write_test.txt", 4);
+
+    REQUIRE(compareVector(read, data, 4));
 }
 
 TEST_CASE("Test FW Shorest Path V5 E12", "[shortest-path]") {
