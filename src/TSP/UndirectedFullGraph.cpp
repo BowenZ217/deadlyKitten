@@ -27,17 +27,21 @@ UndirectedFullGraph::UndirectedFullGraph(const vector<vector<double>>& g) {
 }
 
 void UndirectedFullGraph::addVertex(const string& name) {
+    // since a new vertex, row number + 1
     weights_.push_back(vector<Path>(size_ + 1));
     vector<string> path;
     for (const auto& curr_v : name_to_idx_) {
+        // since a new vertex, col in each row also + 1 (the path from current row to this new vertex)
         path = g_->getShortestPath(curr_v.first, name);
         if (path.empty()) throw std::invalid_argument("vertex can not be connected");
         weights_[curr_v.second].push_back(Path(g_->calcRealDistance(path), path));
         
+        // and also this new vertex to current row
         path = g_->getShortestPath(name, curr_v.first);
         if (path.empty()) throw std::invalid_argument("vertex can not be connected");
         weights_[size_][curr_v.second] = Path(g_->calcRealDistance(path), path);
     }
+    // and match name to index
     name_to_idx_[name] = size_;
     idx_to_name_[size_] = name;
     size_++;

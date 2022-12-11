@@ -28,6 +28,11 @@ void Individual::resetGenes(const vector<int>& genes, UndirectedFullGraph* g) {
     evaluate_fitness(g);
 }
 
+/**
+ * @brief calc current Fitness
+ * 
+ * @param g graph, contain weight information
+ */
 void Individual::evaluate_fitness(UndirectedFullGraph* g) {
     fitness_ = 0;
     int path_num = genes_.size() - 1;

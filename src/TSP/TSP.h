@@ -9,12 +9,33 @@
 using std::vector;
 using std::string;
 
+/**
+ * @brief Travelling salesman problem
+ * 
+ */
 class TSP {
     public:
+        /**
+         * @brief Default constructor
+         * 
+         */
         TSP();
+
+        /**
+         * @brief Construct a new TSP object with Graph and vertexes
+         * 
+         * @param g graph, contains information
+         * @param vertexes vertex need to go through
+         */
         TSP(Graph* g, const vector<string>& vertexes);
 
         // seter
+        /**
+         * @brief reset current TSP object
+         * 
+         * @param g graph, contains information
+         * @param vertexes vertex need to go through
+         */
         void reset(Graph* g, const vector<string>& vertexes);
 
         /**
@@ -32,13 +53,13 @@ class TSP {
          */
         vector<string> getShortestPath();
     private:
-        // 机场数量
+        // Number of vertexes
         int vertex_num_;
-        // 个体数
+        // Number of Individuals
         int individual_num_;
-        // 迭代轮数
+        // Number of iteration rounds
         int gen_num_;
-        // 变异概率
+        // Mutation probability
         double mutate_prob_;
 
         Graph* g_;
