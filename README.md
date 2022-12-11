@@ -42,21 +42,17 @@ make
 ```
 in the terminal.
 
-### Functions
-1. input departure and destination for searching shortest path
+### open **input.txt** in the root folder
 
-    Open **input.txt**
-    
-    given start & destination: input airport name, use comma to split (example: Goroka Airport,Thule Air Base)
+In input.txt, 
 
-2. find the shortest path among major airports (greedy algorithm)
+1) you can use true/false in each state to control if run this part.
 
-    do nothing: default function    
+    example : shortest path (Floyd Warshall) state: false    //no need to call FloydWarshall
 
-3. find the optimal shortest path among major airports (genetic algorithem)
+2) Also, you can costumize the number of centrlity output and the start/end airports used to generate shortest path in this file.  
 
-    do nothing: default function    
-
+    example: centrality(nmber of top): 5   //output top 5 important airports
 
 ### to run code, you need to run:
  ```main
@@ -64,14 +60,9 @@ in the terminal.
 ```
 in the terminal
 
-#### output
-results will export automatically in terminal window or you can open the **output** folder which is located in your root folder.
+### output
+results will export automatically in terminal window or you can open the **output.txt** which is located in your root folder.
 
-output_given.txt
-
-output_greedy.txt
-
-output_genetic.txt
 
 ## Testing Instruction
 ### to test code, you need to run:
@@ -113,7 +104,15 @@ in the terminal
 
 
 ## File List
-### Graph constructor
+### data
+* raw data of airpots, airlins, and routes (from openflight.org)
+* [FloyWarshall.save_](https://github.com/BowenZ217/deadlyKittenAirline/blob/main/data/FloydWarshall.save_) FloydWarshall generating shortest path matrix
+* [data_cleaning.ipynb](https://github.com/BowenZ217/deadlyKittenAirline/blob/main/data/data_cleaning.ipynb)generate randomly graph and its shortest-path for test code
+### doc
+* includinding our [team files](https://github.com/BowenZ217/deadlyKittenAirline/tree/main/doc) (team contract, proposal, and log)
+and [written report](https://github.com/BowenZ217/deadlyKittenAirline/blob/main/doc/report.md).
+### src
+1) Graph constructor
 * [Airport.h](https://github.com/BowenZ217/deadlyKittenAirline/blob/main/src/Airport.h) & [Airport.cpp](https://github.com/BowenZ217/deadlyKittenAirline/blob/main/src/Airport.cpp)
 
     containing the information of airports: airport_id_, index_, name_, country_, city_, latitude_, and longitude.
@@ -128,31 +127,35 @@ in the terminal
 
     graph[source][destination] = distance from source to destination. (INF for no edges)
 
-### Graph traversal
+2)  Graph traversal
 
 
 * [BFS.h](https://github.com/BowenZ217/deadlyKittenAirline/blob/main/src/graphTraversal/BFS.h) & [BFS.cpp](https://github.com/BowenZ217/deadlyKittenAirline/blob/main/src/graphTraversal/BFS.cpp)
 create a BFS object to traversal the graph. 
 
 
-### FloydWarshall Implementation
+3)  FloydWarshall Implementation
 * [FloydWarshall.h](https://github.com/BowenZ217/deadlyKittenAirline/blob/main/src/FloydWarshall.h)
 * [FloydWarshall.cpp](https://github.com/BowenZ217/deadlyKittenAirline/blob/main/src/FloydWarshall.cpp)
 
     After initializing, a weight matrix is generated and saved as FloydWarshall.save. Then using the matrix to get the shortest path with shorter time.
 
-### Dijkstra's Implementation
+4)  Dijkstra's Implementation
 * [Dijstra.h](https://github.com/BowenZ217/deadlyKittenAirline/blob/main/src/Dijkstra.h)
 * [Dijstra.cpp](https://github.com/BowenZ217/deadlyKittenAirline/blob/main/src/Dijkstra.cpp)
 
     calculating the shortest path With given start airport.
 
-### Betweenness Centrality Implementation
+5)  Betweenness Centrality Implementation
 * [Centrality.h](https://github.com/BowenZ217/deadlyKittenAirline/blob/main/src/Centrality.h)
 * [Centrality.cpp](https://github.com/BowenZ217/deadlyKittenAirline/blob/main/src/Centrality.cpp)
 
     If an airport is passed by shortest path with high frequency, it is an important transit point in the whole graph.
     calculating the frequency by using the matrix generated in FloydWarshall, we can know the significance of each airports.
+6) Travel Salesman Problem Solving
+    * [TSP](https://github.com/BowenZ217/deadlyKittenAirline/tree/main/src/TSP)
+
+    generate shortest route with a set of airports with genetic algorithm.
 
 ### Test
 * [test_data](https://github.com/BowenZ217/deadlyKittenAirline/tree/main/test_data)
