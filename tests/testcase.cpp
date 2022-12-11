@@ -4,6 +4,7 @@
 #include "Graph.h"
 #include "Centrality.h"
 #include "Dijkstra.h"
+#include "TSP/TSP.h"
 
 #include <iostream>
 #include <string>
@@ -56,22 +57,19 @@ bool compareVector(const vector<vector<string>>& actual, const vector<vector<str
 
 bool compareVector(const vector<string>& actual, const vector<string>& vec) {
     unsigned size_ = actual.size();
-    if (actual.size() != vec.size()) {
-        cout << "different vector : \n";
-        cout << "actual = ";
-        printVector(actual);
-        cout << "vec = ";
-        printVector(vec);
+    if (actual.size() != vec.size()) return false;
+    
+    for (unsigned i = 0; i < size_; ++i) {
+        if (actual.at(i) != vec.at(i)) return false;
     }
+
+    return true;
+}
+
+bool compareVector(const vector<int>& actual, const vector<int>& vec) {
+    unsigned size_ = actual.size();
     if (actual.size() != vec.size()) return false;
     for (unsigned i = 0; i < size_; ++i) {
-        if (actual.at(i) != vec.at(i)) {
-            cout << "different vector : \n";
-            cout << "actual = ";
-            printVector(actual);
-            cout << "vec = ";
-            printVector(vec);
-        }
         if (actual.at(i) != vec.at(i)) return false;
     }
 
@@ -267,4 +265,39 @@ TEST_CASE("Test Centrality V15E50", "[Centrality]") {
         REQUIRE(actualFreq == expectedFreq);
     }
     cout << endl;
+}
+
+TEST_CASE("Test Genetic Algorithms", "[GA]") {
+    double inf = INT_MAX / 100;
+    vector<vector<double>> g_w = {  { inf, 1, 1000, 1000 },
+                                    { 1000, inf, 1, 1000 },
+                                    { 1000, 1000, inf, 1 },
+                                    { 1, 1000, 1000, inf } };
+    int vertex_num = 4;
+    int individual_num = 60;
+    int gen_num = 400;
+    double mutate_prob = 0.4;
+
+    UndirectedFullGraph g_2 = UndirectedFullGraph(g_w);
+
+    GA ga(&g_2, vertex_num, individual_num, gen_num, mutate_prob);
+    ga.train();
+    // path should be 0 -> 1 -> 2 -> 3 -> 0
+    // or 1 -> 2 -> 3 -> 0 -> 1
+    // ... something like this
+    vector<int> result = ga.getLastResult();
+    vector<vector<int>> possible = {    { 0, 1, 2, 3 },
+                                        { 1, 2, 3, 0 },
+                                        { 2, 3, 0, 1 },
+                                        { 3, 0, 1, 2 } };
+
+    bool check = false;
+
+    for (const auto& expect : possible) {
+        if (compareVector(expect, result)) {
+            check = true;
+            break;
+        }
+    }
+    REQUIRE(check);
 }

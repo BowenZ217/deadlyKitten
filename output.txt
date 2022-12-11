@@ -1,0 +1,21 @@
+0 : King Abdulaziz International Airport , 601493
+1 : Singapore Changi Airport , 574130
+2 : Indira Gandhi International Airport , 514757
+3 : Ted Stevens Anchorage International Airport , 503002
+4 : Atatürk International Airport , 497383
+5 : Minneapolis-St Paul International/Wold-Chamberlain Airport , 488507
+6 : Adolfo Suárez Madrid–Barajas Airport , 447504
+7 : Jomo Kenyatta International Airport , 442947
+8 : Lester B. Pearson International Airport , 424741
+9 : Guarulhos - Governador André Franco Montoro International Airport , 421078
+
+---------------------------
+
+shortest path to connect them (inorder):
+    [   Ted Stevens Anchorage International Airport , Minneapolis-St Paul International/Wold-Chamberlain Airport , 
+        Miami International Airport , Guarulhos - Governador André Franco Montoro International Airport , 
+        Quatro de Fevereiro Airport , Jomo Kenyatta International Airport , Seychelles International Airport , 
+        Bandaranaike International Colombo Airport , Singapore Changi Airport , Indira Gandhi International Airport , 
+        King Abdulaziz International Airport , Atatürk International Airport , Adolfo Suárez Madrid–Barajas Airport , 
+        Francisco de Sá Carneiro Airport , Lester B. Pearson International Airport , 
+        Minneapolis-St Paul International/Wold-Chamberlain Airport , Ted Stevens Anchorage International Airport , [end] ]
