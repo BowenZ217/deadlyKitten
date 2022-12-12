@@ -6,9 +6,9 @@
 
 # Your Goals
 
-The goals of the our projct are to increase profits for an airline company by setting up routes to major airports around the world, and to find the shortest routes that could pass through these important airports and return to the starting point. 
+The goals of the our projct are to increase profits for an airline company by setting up routes to major airports around the world, and to find the shortest routes that could pass through these important airports and return to the starting point. In other words, we're trying to solve a typical travelling salesman problem.
 
-We'are using OpenFlight as our dataset. And these goals will be achieved by calculating the distances between airports using latitude and longitude, and finding the shortest paths using Dijkstras and FloydWarshall algorithm. Based on the shortest paths, we can further calculate the centrality of airports.
+We'are using OpenFlight as our dataset. And these goals will be achieved by calculating the distances between airports using latitude and longitude, and finding the shortest paths using Dijkstras and FloydWarshall algorithm. Based on the shortest paths, we can further calculate the betweennes centrality of airports. To show our final results, We were looking for the top ten most central airports and finding the shortest path to connect them. We combined shortest path algorithm and greedily algorithm to find the path efficiently. However, considering that the greedy algorithm cannot promise a global optimal solution for this, we further implement the genetic algorithm.
 
 
 
