@@ -70,7 +70,7 @@ In input.txt:
 * you can use true/false in each state to control if run this part, example :
 
 ```file
-shortest path (Floyd Warshall) state: false    // 
+shortest path (Floyd Warshall) state: false
 ```
 
 it will not call FloydWarshall
