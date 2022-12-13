@@ -95,7 +95,7 @@ in the terminal
 
 ### output
 
-results will export automatically in terminal window or you can open the **output.txt** which is located in your root folder.
+results will export automatically to **output.txt**, you can open the **output.txt** to see the results, which is located in your root folder.
 
 ## Testing Instruction
 
@@ -147,10 +147,6 @@ in the terminal
 
 * raw data of airpots, airlins, and routes (from openflight.org)
 
-* [FloyWarshall.save_](https://github.com/BowenZ217/deadlyKittenAirline/blob/main/data/FloydWarshall.save_) FloydWarshall generating shortest path matrix
-
-* [data_cleaning.ipynb](https://github.com/BowenZ217/deadlyKittenAirline/blob/main/data/data_cleaning.ipynb)generate randomly graph and its shortest-path for test code
-
 * Example of airport file:
 
 |    |    |    |    |    |    |    |
@@ -172,6 +168,10 @@ in the terminal
 | ----------- | ----------- | ----------- | ----------- | ----------- | ----------- | ----------- |
 | [Airline] | [Airline ID] | [Source airport] | [Source airport ID] | [Destination airport] | [Destination airport ID] | [Stops] |
 | 2B | 410 | AER | 2965 | KZN | 2990 | 0 |
+
+* [data_cleaning.ipynb](https://github.com/BowenZ217/deadlyKittenAirline/blob/main/data/data_cleaning.ipynb) generate randomly graph and its shortest-path for test code
+
+* [FloyWarshall.save_](https://github.com/BowenZ217/deadlyKittenAirline/blob/main/data/FloydWarshall.save_) FloydWarshall generating shortest path matrix
 
 ### doc
 
