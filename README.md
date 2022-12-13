@@ -26,148 +26,223 @@ In addition, we have another sub dataset “airport.dat”, which contains the l
 Based on the shortest paths, we further want to calculate the betweenness centrality to measure the importance of airports over the world.
 
 ## Presentation Video
+
 [video](https://drive.google.com/file/d/1mRAOeos71ml_qIHjO8uC0evkSkPjY4WI/view?usp=sharing)
 
 ## Written Report
-[Report](https://github.com/BowenZ217/deadlyKittenAirline/blob/main/report.md)
+
+[Report](https://github.com/BowenZ217/deadlyKittenAirline/blob/main/doc/report.md)
 
 ## Running Instruction
+
 ### check out the code
-```
+
+To setup this project, clone the repository locally using the command, then cd into the newly made directory
+
+```bash
 git clone https://github.com/BowenZ217/deadlyKittenAirline.git
+
+cd deadlyKittenAirline
 ```
-### to build code, you need to run:
- ```make
+
+### if it is the first time to build after clone, you need to run
+
+```bash
+mkdir build
+
+cd build
+
+cmake ..
+```
+
+### to build code, you need to run
+
+```bash
 make
 ```
+
 in the terminal.
 
 ### open **input.txt** in the root folder
 
-In input.txt, 
+In input.txt:
 
-1) you can use true/false in each state to control if run this part.
+* you can use true/false in each state to control if run this part, example :
 
-    example : shortest path (Floyd Warshall) state: false    //no need to call FloydWarshall
+```file
+shortest path (Floyd Warshall) state: false    // 
+```
 
-2) Also, you can costumize the number of centrlity output and the start/end airports used to generate shortest path in this file.  
+it will not call FloydWarshall
 
-    example: centrality(nmber of top): 5   //output top 5 important airports
+* Also, you can costumize the number of centrlity output and the start/end airports used to generate shortest path in this file.  
 
-### to run code, you need to run:
- ```main
+```file
+example: centrality(nmber of top): 5
+```
+
+it will output top 5 important airports
+
+### to run code, you need to run
+
+```bash
 ./main
 ```
+
 in the terminal
+
+* **Warning**: If the data is too large, `FloydWarshall` can take over 1 hour to run.
 
 ### output
+
 results will export automatically in terminal window or you can open the **output.txt** which is located in your root folder.
 
-
 ## Testing Instruction
-### to test code, you need to run:
- ```test
+
+### to test code, you need to run
+
+```bash
 ./test
 ```
+
 in the terminal
-
-
 
 ### Test Case List
 
 * File io stream
 
-    TEST_CASE("Test datToVector", "[utils]")
+    TEST_CASE("Test read file", "[utils]")
+
+    TEST_CASE("Test write file", "[utils]")
 
 * Graph shortest path calculate in graphs with different complexity
 
-    TEST_CASE("Test FW Shorest Path V5 E12", "[shortest-path]") 
+    TEST_CASE("Test FW Shorest Path V5 E12", "[shortest-path]")
 
-    TEST_CASE("Test FW Shortest Path V10 E30", "[shortest-path]") 
+    TEST_CASE("Test FW Shortest Path V10 E30", "[shortest-path]")
 
-    TEST_CASE("Test FW Shortest Path V15 E50", "[shortest-path]") 
+    TEST_CASE("Test FW Shortest Path V15 E50", "[shortest-path]")
 
-    TEST_CASE("Test Dijkstra Shorest Path V5 E12", "[shortest-path]") 
+    TEST_CASE("Test Dijkstra Shorest Path V5 E12", "[shortest-path]")
 
-    TEST_CASE("Test Dijkstra Shortest Path V10 E30", "[shortest-path]") 
+    TEST_CASE("Test Dijkstra Shortest Path V10 E30", "[shortest-path]")
 
-    TEST_CASE("Test Dijkstra Shortest Path V15 E50", "[shortest-path]") 
+    TEST_CASE("Test Dijkstra Shortest Path V15 E50", "[shortest-path]")
 
 * Centrality in graphs with different complexity
-    
-    TEST_CASE("Test Centrality V5E12", "[Centrality]") 
 
-    TEST_CASE("Test Centrality V10E30", "[Centrality]") 
+    TEST_CASE("Test Centrality V5E12", "[Centrality]")
 
-    TEST_CASE("Test Centrality V15E50", "[Centrality]") 
+    TEST_CASE("Test Centrality V10E30", "[Centrality]")
 
+    TEST_CASE("Test Centrality V15E50", "[Centrality]")
 
+* TSP with the obvious best path
+
+    TEST_CASE("Test Genetic Algorithms", "[GA]")
 
 ## File List
+
 ### data
+
 * raw data of airpots, airlins, and routes (from openflight.org)
+
 * [FloyWarshall.save_](https://github.com/BowenZ217/deadlyKittenAirline/blob/main/data/FloydWarshall.save_) FloydWarshall generating shortest path matrix
+
 * [data_cleaning.ipynb](https://github.com/BowenZ217/deadlyKittenAirline/blob/main/data/data_cleaning.ipynb)generate randomly graph and its shortest-path for test code
+
+* Example of airport file:
+
+|    |    |    |    |    |    |    |
+| ----------- | ----------- | ----------- | ----------- | ----------- | ----------- | ----------- |
+| [Airport ID] | [Name] | [City] | [Country] | [Latitude] | [Longitude] | [Altitude] |
+| 1 | "Goroka Airport" | "Goroka" | "Papua New Guinea" | -6.081689834590001 | 145.391998291 | 5282 |
+
+* Example of route file:
+
+|    |    |    |
+| ----------- | ----------- | ----------- |
+| [Airport ID] | [Name] | [Alias] |
+| 1 | "Private flight" | \N |
+| 324 | "All Nippon Airways" | "ANA All Nippon Airways" |
+
+* Example of airline file:
+
+|    |    |    |    |    |    |    |
+| ----------- | ----------- | ----------- | ----------- | ----------- | ----------- | ----------- |
+| [Airline] | [Airline ID] | [Source airport] | [Source airport ID] | [Destination airport] | [Destination airport ID] | [Stops] |
+| 2B | 410 | AER | 2965 | KZN | 2990 | 0 |
+
 ### doc
+
 * includinding our [team files](https://github.com/BowenZ217/deadlyKittenAirline/tree/main/doc) (team contract, proposal, and log)
 and [written report](https://github.com/BowenZ217/deadlyKittenAirline/blob/main/doc/report.md).
+
 ### src
+
 1) Graph constructor
-* [Airport.h](https://github.com/BowenZ217/deadlyKittenAirline/blob/main/src/Airport.h) & [Airport.cpp](https://github.com/BowenZ217/deadlyKittenAirline/blob/main/src/Airport.cpp)
 
-    containing the information of airports: airport_id_, index_, name_, country_, city_, latitude_, and longitude.
+    * [Airport.h](https://github.com/BowenZ217/deadlyKittenAirline/blob/main/src/Airport.h) & [Airport.cpp](https://github.com/BowenZ217/deadlyKittenAirline/blob/main/src/Airport.cpp)
 
-* [Flight.h](https://github.com/BowenZ217/deadlyKittenAirline/blob/main/src/Flight.h) & [Flight.cpp](https://github.com/BowenZ217/deadlyKittenAirline/blob/main/src/Flight.cpp)
+        containing the information of airports: `airport_id_, index_, name_, country_, city_, latitude_, and longitude`
 
-    containing the information of flights: airline_id, source_id, destination_id
+    * [Flight.h](https://github.com/BowenZ217/deadlyKittenAirline/blob/main/src/Flight.h) & [Flight.cpp](https://github.com/BowenZ217/deadlyKittenAirline/blob/main/src/Flight.cpp)
 
-* [Graph.h](https://github.com/BowenZ217/deadlyKittenAirline/blob/main/src/Graph.h) & [Graph.cpp](https://github.com/BowenZ217/deadlyKittenAirline/blob/main/src/Graph.cpp)
+        containing the information of flights: `airline_id, source_id, destination_id`
 
-    constructing a graph by using the airportFile, routeFile, and airlineFile: aiport_index as vertices, flight_index as edges.
+    * [Graph.h](https://github.com/BowenZ217/deadlyKittenAirline/blob/main/src/Graph.h) & [Graph.cpp](https://github.com/BowenZ217/deadlyKittenAirline/blob/main/src/Graph.cpp)
 
-    graph[source][destination] = distance from source to destination. (INF for no edges)
+        constructing a graph by using the airportFile, routeFile, and airlineFile: aiport_index as vertices, flight_index as edges.
 
-2)  Graph traversal
+        `graph[source][destination]` = distance from source to destination. (INF for no edges)
 
+2) Graph traversal
 
-* [BFS.h](https://github.com/BowenZ217/deadlyKittenAirline/blob/main/src/graphTraversal/BFS.h) & [BFS.cpp](https://github.com/BowenZ217/deadlyKittenAirline/blob/main/src/graphTraversal/BFS.cpp)
-create a BFS object to traversal the graph. 
+    * [BFS.h](https://github.com/BowenZ217/deadlyKittenAirline/blob/main/src/graphTraversal/BFS.h) & [BFS.cpp](https://github.com/BowenZ217/deadlyKittenAirline/blob/main/src/graphTraversal/BFS.cpp)
+    create a BFS object to traversal the graph.
 
+3) FloydWarshall Implementation
 
-3)  FloydWarshall Implementation
-* [FloydWarshall.h](https://github.com/BowenZ217/deadlyKittenAirline/blob/main/src/FloydWarshall.h)
-* [FloydWarshall.cpp](https://github.com/BowenZ217/deadlyKittenAirline/blob/main/src/FloydWarshall.cpp)
+    * [FloydWarshall.h](https://github.com/BowenZ217/deadlyKittenAirline/blob/main/src/FloydWarshall.h)
 
-    After initializing, a weight matrix is generated and saved as FloydWarshall.save. Then using the matrix to get the shortest path with shorter time.
+    * [FloydWarshall.cpp](https://github.com/BowenZ217/deadlyKittenAirline/blob/main/src/FloydWarshall.cpp)
 
-4)  Dijkstra's Implementation
-* [Dijstra.h](https://github.com/BowenZ217/deadlyKittenAirline/blob/main/src/Dijkstra.h)
-* [Dijstra.cpp](https://github.com/BowenZ217/deadlyKittenAirline/blob/main/src/Dijkstra.cpp)
+        After initializing, a weight matrix is generated and saved as FloydWarshall.save. Then using the matrix to get the shortest path with shorter time.
 
-    calculating the shortest path With given start airport.
+4) Dijkstra's Implementation
 
-5)  Betweenness Centrality Implementation
-* [Centrality.h](https://github.com/BowenZ217/deadlyKittenAirline/blob/main/src/Centrality.h)
-* [Centrality.cpp](https://github.com/BowenZ217/deadlyKittenAirline/blob/main/src/Centrality.cpp)
+    * [Dijstra.h](https://github.com/BowenZ217/deadlyKittenAirline/blob/main/src/Dijkstra.h)
 
-    If an airport is passed by shortest path with high frequency, it is an important transit point in the whole graph.
-    calculating the frequency by using the matrix generated in FloydWarshall, we can know the significance of each airports.
+    * [Dijstra.cpp](https://github.com/BowenZ217/deadlyKittenAirline/blob/main/src/Dijkstra.cpp)
+
+        calculating the shortest path With given start airport.
+
+5) Betweenness Centrality Implementation
+
+    * [Centrality.h](https://github.com/BowenZ217/deadlyKittenAirline/blob/main/src/Centrality.h)
+
+    * [Centrality.cpp](https://github.com/BowenZ217/deadlyKittenAirline/blob/main/src/Centrality.cpp)
+
+        If an airport is passed by shortest path with high frequency, it is an important transit point in the whole graph.
+        calculating the frequency by using the matrix generated in FloydWarshall, we can know the significance of each airports.
+
 6) Travel Salesman Problem Solving
+
     * [TSP](https://github.com/BowenZ217/deadlyKittenAirline/tree/main/src/TSP)
 
     generate shortest route with a set of airports with genetic algorithm.
 
 ### Test
+
 * [test_data](https://github.com/BowenZ217/deadlyKittenAirline/tree/main/test_data)
 
     The information of test examples
-    we generate 3 graphs with different complexity randomly and their shortest path solutions by [test.ipynd](https://github.com/BowenZ217/deadlyKittenAirline/blob/main/test.ipynb). 
+    we generate 3 graphs with different complexity randomly and their shortest path solutions by [test.ipynd](https://github.com/BowenZ217/deadlyKittenAirline/blob/main/test.ipynb).
 
 * [tests](https://github.com/BowenZ217/deadlyKittenAirline/tree/main/tests)
 
     Test cases for io stream, FloydWarshall's algorithm, Dijkstra's algorithm, and centrality calculator.
 
-
-
+## Referance
 
 [CS 225 Final Project](https://courses.engr.illinois.edu/cs225/fa2022/pages/final_project.html)

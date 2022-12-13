@@ -12,9 +12,9 @@
 
 1. **Work Distribution** We will try our best to equally distribute the workload. In situations where there are bigger takss, we will ensure that two people are assigned to that workload instead of just one. We can message in the Discord if the workload is ever to much, and do our best to accomadate/readjust workload.
 
-2. **Time Commitment** Each person should be expected to work on average 4 hours/week. This isn't a hard set number, as the most important thing would be do complete your assigned workload. If someone doesn't have time during a specific week, that person spends extra time the next week. 
+2. **Time Commitment** Each person should be expected to work on average 4 hours/week. This isn't a hard set number, as the most important thing would be do complete your assigned workload. If someone doesn't have time during a specific week, that person spends extra time the next week.
 
-3. **Conflict Resolution** All conflicts within the team will be resolved in a professional manner. Disagreements will be resolved by vote. If a certain group member is habitually completing less work than expected or late we will have a discussion with said member in order to resolve any issues. If this is not enough, worst comes to worst we will inform course staff, but only after we try to solve the conflict ourselves. Other hypothetical situations will be dealt with when they arise, and we will try our best to be fair to all group members. 
+3. **Conflict Resolution** All conflicts within the team will be resolved in a professional manner. Disagreements will be resolved by vote. If a certain group member is habitually completing less work than expected or late we will have a discussion with said member in order to resolve any issues. If this is not enough, worst comes to worst we will inform course staff, but only after we try to solve the conflict ourselves. Other hypothetical situations will be dealt with when they arise, and we will try our best to be fair to all group members.
 
 ## Signatures
 

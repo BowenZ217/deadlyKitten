@@ -70,7 +70,7 @@ bool compareVector(const vector<int>& actual, const vector<int>& vec) {
     return true;
 }
 
-TEST_CASE("Test datToVector", "[utils]") {
+TEST_CASE("Test read file", "[utils]") {
     string file_name = "../test_data/test_dat_to_vector.dat";
 
     vector<vector<string>> actual
