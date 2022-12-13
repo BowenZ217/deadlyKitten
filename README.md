@@ -78,10 +78,16 @@ it will not call FloydWarshall
 * Also, you can costumize the number of centrlity output and the start/end airports used to generate shortest path in this file.  
 
 ```file
-example: centrality(nmber of top): 5
+centrality(nmber of top): 5
 ```
 
 it will output top 5 important airports
+
+* In `vertex:` under `# Travelling salesman problem`, you can put all the nodes you want to pass through during one trip, separated by commas
+
+```file
+vertex: [Airport 1], [Airport 2], [Airport 3], ...
+```
 
 ### to run code, you need to run
 
